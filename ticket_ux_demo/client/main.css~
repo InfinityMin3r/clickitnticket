@@ -1,0 +1,33 @@
+/* CSS declarations go here */
+@import 'https://fonts.googleapis.com/css?family=David+Libre';
+
+body{
+    background:url('assets/weather.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+form{
+    width: 29.4vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ticket-box{
+    background-color: rgba(255, 255, 255, .7);
+    position: fixed;
+    padding: 10px;
+    top: 50%;
+    left: 50%;
+    width: 32vw !important;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px black;
+    z-index: 2;
+}
+
+.head-text{
+    font-family: 'David Libre', serif;
+}
