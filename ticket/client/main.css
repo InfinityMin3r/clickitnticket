@@ -28,6 +28,18 @@ form{
     z-index: 2;
 }
 
+.ticket-box textarea{
+    resize: vertical;
+}
+
 .head-text{
+    /*http://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting-using-cssc*/
+    cursor: default;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           
     font-family: 'David Libre', serif;
 }
