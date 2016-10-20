@@ -1,0 +1,65 @@
+<body>
+
+</body>
+
+<template name="submit">
+  <div class="container ticket-box">
+    <form>
+      <div class="form-group">
+        <h3 class="text-center head-text">Ticket Submission: Page 1</h3>
+        <label for="youremailinput">Your Email</label>
+        <input value="rosenj5@rpi.edu" type="email" class="form-control" id="youremailin" placeholder="rosenj5@rpi.edu" disabled />
+      </div>
+      <div class="form-group">
+        <label for="rpiemailinput">RPI Email</label>
+        <input type="email" class="form-control" id="rpiemailin" placeholder="email@rpi.edu" />
+      </div>
+      <div class="form-group">
+        <label for="issuetype">Issue Type</label>
+        <select class="form-control" id="issuetype">
+          <option value="network" selected>Networking</option>
+          <option value="phone">Phone</option>
+          <option value="printer">Printer</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="description">Please Describe Issue:</label>
+        <textarea class="form-control" name="description" id="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="priorityselect">Select Priority</label>
+        <br />
+        <button class="pri-btn btn btn-danger">Priority A</button>
+        <span>|</span>
+        <button class="pri-btn btn btn-warning">Priority B</button>
+        <span>|</span>
+        <button class="pri-btn btn btn-primary">Priority C</button>
+        <span>|</span>
+        <button class="pri-btn btn btn-info">Priority D</button>
+        <span>||</span>
+        <button class="btn {{priorityclass}} disabled" id="finalpriority">Priority {{prioritysel}}</button>
+      </div>
+      <button class="btn btn-primary btn-block" id="submit-btn">Submit</button>
+    </form>
+  </div>
+</template>
+
+<template name="ticketview">
+  <ul>
+    {{#each tickets}}
+      {{> ticket}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="ticket">
+  <li>Ticket:
+    <ul>
+      <li>Submitted For: {{rpiemail}}</li>
+      <li>Submitted By: {{youremail}}</li>
+      <li>Issue Type: {{issuetype}}</li>
+      <li>Priority: {{priority}}</li>
+      <li>Status: {{status}}</li>
+    </ul>
+  </li>
+</template>
