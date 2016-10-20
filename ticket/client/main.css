@@ -39,6 +39,9 @@ form{
     box-shadow: 0 0 5px black;
     z-index: 2;
 }
+.ticket-list label{
+    text-align: center;    
+}
 
 .ticket-box textarea{
     resize: vertical;
