@@ -41,12 +41,22 @@ form{
 }
 .ticket-list label{
     text-align: center;    
+    display: block;
+}
+
+.ticket-list .tbtn{
+    cursor: pointer;
 }
 
 .ticket-box textarea{
     resize: vertical;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;
 }
-
  
 li {
   position: relative;
@@ -54,7 +64,9 @@ li {
   padding: 15px;
 }
  
- 
+.ticket-list ul{
+    display: none;
+} 
 
 .head-text{
     /*http://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting-using-cssc*/
@@ -67,3 +79,4 @@ li {
     user-select: none;           
     font-family: 'David Libre', serif;
 }
+

@@ -18,6 +18,13 @@ Template.ticketview.helpers({
     },
 });
 
+Template.ticketview.events({
+    'click .ticket-list .tbtn': function(event){
+	const target = event.target;
+	$(target).parent().parent().parent().find("ul").toggle();
+    }
+});
+
 Template.submit.onCreated(function submitOnCreated(){
     //variable to keep track of final priority value
     this.prioritysel = new ReactiveVar("D");
