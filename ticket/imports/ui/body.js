@@ -74,6 +74,10 @@ Template.submit.events({
 	const rpiemail = target.rpiemailin.value;
 	const issuetype = target.issuetype.value;
 	const status = "new-ticket";
+	if (description == "" || priority == "" || youremail == "" || rpiemail == "" || issuetype == ""){
+	    alert("Something wasn't set, try again!");
+	    return false;
+	}
 	Tickets.insert({
             description,
             youremail,
