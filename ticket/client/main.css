@@ -28,9 +28,45 @@ form{
     z-index: 2;
 }
 
+.ticket-list{
+    background-color: rgba(255, 255, 255, .7);
+    position: relative;
+    padding: 10px;
+    top: 0%;
+    left: 0%;
+    width: 50%;
+    height: 100%;
+    box-shadow: 0 0 5px black;
+    z-index: 2;
+}
+.ticket-list label{
+    text-align: center;    
+    display: block;
+}
+
+.ticket-list .tbtn{
+    cursor: pointer;
+}
+
 .ticket-box textarea{
     resize: vertical;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;
 }
+ 
+li {
+  position: relative;
+  list-style: none;
+  padding: 15px;
+}
+ 
+.ticket-list ul{
+    display: none;
+} 
 
 .head-text{
     /*http://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting-using-cssc*/
@@ -43,3 +79,4 @@ form{
     user-select: none;           
     font-family: 'David Libre', serif;
 }
+

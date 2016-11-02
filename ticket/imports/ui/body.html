@@ -53,13 +53,16 @@
 </template>
 
 <template name="ticket">
-  <li>Ticket:
+<br>
+<div class="container ticket-list">
+  <label>Ticket: <span class="tbtn"><strong>(toggle)</strong></span></label>
     <ul>
-      <li>Submitted For: {{rpiemail}}</li>
-      <li>Submitted By: {{youremail}}</li>
-      <li>Issue Type: {{issuetype}}</li>
-      <li>Priority: {{priority}}</li>
-      <li>Status: {{status}}</li>
+      <li><p>Submitted For: {{rpiemail}}</p>
+      <p>Submitted By: {{youremail}}</p>
+      <p>Issue Type: {{issuetype}}</p>
+      <p>Priority: {{priority}}</p>
+      <p>Status: {{status}}</p> </li>
     </ul>
-  </li>
+  </div>
+  <br>
 </template>
