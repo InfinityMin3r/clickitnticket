@@ -8,7 +8,7 @@
       <div class="form-group">
         <h3 class="text-center head-text">Ticket Submission: Page 1</h3>
         <label for="youremailinput">Your Email</label>
-        <input value="rosenj5@rpi.edu" type="email" class="form-control" id="youremailin" placeholder="rosenj5@rpi.edu" disabled />
+        <input value="rosenj5@rpi.edu" type="email" class="form-control" id="youremailin" placeholder="rosenj5@rpi.edu" />
       </div>
       <div class="form-group">
         <label for="rpiemailinput">RPI Email</label>
@@ -49,6 +49,10 @@
     {{#each tickets}}
       {{> ticket}}
     {{/each}}
+    <br>
+    <div class="container ticket-list">
+      <label><a href="../add">Create Ticket</a></label>
+    </div>
   </ul>
 </template>
 
@@ -61,8 +65,10 @@
       <p>Submitted By: {{youremail}}</p>
       <p>Issue Type: {{issuetype}}</p>
       <p>Priority: {{priority}}</p>
+      <p>Description:{{description}}</p>
       <p>Status: {{status}}</p> </li>
     </ul>
   </div>
   <br>
 </template>
+
