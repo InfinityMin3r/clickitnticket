@@ -63,7 +63,7 @@ Template.submit.events({
 		}
 	},
 	'click #finalpriority': function(event){
-	event.preventDefault();
+		event.preventDefault();
 	},
 	'click #submit-btn'(event) {
 		event.preventDefault();
