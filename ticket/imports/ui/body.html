@@ -44,6 +44,12 @@
   </div>
 </template>
 
+<template name="admin">
+  <div class="container">
+    <div class="text-center"><p>Hi, <span>{{> loginButtons}}</span></p></div>
+  </div>
+</template>
+
 <template name="ticketview">
   <ul>
     {{#each tickets}}
@@ -56,17 +62,28 @@
   </ul>
 </template>
 
+<template name="detailed-view">
+  <div class="container">
+
+  </div>
+</template>
+
 <template name="ticket">
 <br>
 <div class="container ticket-list">
   <label>Ticket: <span class="tbtn"><strong>(toggle)</strong></span></label>
     <ul>
-      <li><p>Submitted For: {{rpiemail}}</p>
-      <p>Submitted By: {{youremail}}</p>
-      <p>Issue Type: {{issuetype}}</p>
-      <p>Priority: {{priority}}</p>
-      <p>Description:{{description}}</p>
-      <p>Status: {{status}}</p> </li>
+      <li>
+	<p>Submitted For: {{rpiemail}}</p>
+	<p>Submitted By: {{youremail}}</p>
+	<p>Issue Type: {{issuetype}}</p>
+	<p>Priority: {{priority}}</p>
+	<p>Description:{{description}}</p>
+	<p>Status: {{status}}</p>
+	{{#if currentUser}}
+	  <p><button class="btn btn-success btn-block">Resolve!</button></p>
+        {{/if}}
+      </li>
     </ul>
   </div>
   <br>

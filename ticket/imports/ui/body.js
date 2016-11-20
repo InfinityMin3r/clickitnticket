@@ -12,6 +12,11 @@ Router.route('/add', function(){
     this.render('submit');
 });
 
+Router.route('/admin', function(){
+    if ( Meteor.userId() ) this.render('admin');
+    else this.render('loginButtons');
+});
+
 Template.ticketview.helpers({
     tickets() {
         return Tickets.find({}, { sort: { createdAt: -1 } });;
