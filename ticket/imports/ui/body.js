@@ -79,6 +79,9 @@ Template.submit.events({
 		const rpiemail = target.rpiemailin.value;
 		const issuetype = target.issuetype.value;
 		const status = "new-ticket";
+	        var   number =  Tickets.findOne({}, { sort: { createdAt: -1 } });
+	        if (typeof(number) === "undefined") number = 2760001;
+	        else number = number['number'] + 1;
 		if (description == "" || priority == "" || youremail == "" || rpiemail == "" || issuetype == ""){
 			alert("Something wasn't set, try again!");
 			return false;
@@ -89,6 +92,7 @@ Template.submit.events({
 			rpiemail,
 			issuetype,
 			priority,
+		        number,
 			status,
 			createdAt: new Date(),
 		});
