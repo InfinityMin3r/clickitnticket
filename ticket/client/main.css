@@ -46,6 +46,8 @@ form{
 
 .ticket-list .tbtn{
     cursor: pointer;
+    font-style: italic;
+    font-size: 40%;
 }
 
 .ticket-box textarea{

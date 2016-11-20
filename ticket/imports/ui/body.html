@@ -71,15 +71,15 @@
 <template name="ticket">
 <br>
 <div class="container ticket-list">
-  <label>Ticket: <span class="tbtn"><strong>(toggle)</strong></span></label>
+  <label class="h1">Ticket: <span class="tbtn"><em>toggle</em></span></label>
     <ul>
       <li>
-	<p>Submitted For: {{rpiemail}}</p>
-	<p>Submitted By: {{youremail}}</p>
-	<p>Issue Type: {{issuetype}}</p>
-	<p>Priority: {{priority}}</p>
-	<p>Description:{{description}}</p>
-	<p>Status: {{status}}</p>
+	<p><strong>Submitted For:</strong> {{rpiemail}}</p>
+	<p><strong>Submitted By:</strong> {{youremail}}</p>
+	<p><strong>Issue Type:</strong> {{issuetype}}</p>
+	<p><strong>Priority:</strong> {{priority}}</p>
+	<p><strong>Description:</strong> {{description}}</p>
+	<p><strong>Status:</strong> {{status}}</p>
 	{{#if currentUser}}
 	  <p><button class="btn btn-success btn-block">Resolve!</button></p>
         {{/if}}
@@ -89,3 +89,16 @@
   <br>
 </template>
 
+<template name="singleticket">
+<br>
+<div class="container ticket-list">
+  <label><h1>Ticket:</h1></label>
+      <li>
+        <p><strong>Reported by:</strong> {{rpiemail}}</p>
+        <p><strong>Issue Type:</strong> {{issuetype}}</p>
+        <p><strong>Description:</strong> {{description}}</p>
+        <p><strong>Status:</strong> {{status}}</p>
+      </li>
+  </div>
+  <br>
+</template>
