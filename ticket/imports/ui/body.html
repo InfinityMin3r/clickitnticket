@@ -90,9 +90,8 @@
 </template>
 
 <template name="singleticket">
-<br>
-<div class="container ticket-list">
-  <label><h1>Ticket:</h1></label>
+  <div class="container ticket-list">
+    <label><h1>{{number}}</h1></label>
       <li>
         <p><strong>Reported by:</strong> {{rpiemail}}</p>
         <p><strong>Issue Type:</strong> {{issuetype}}</p>
@@ -100,5 +99,4 @@
         <p><strong>Status:</strong> {{status}}</p>
       </li>
   </div>
-  <br>
 </template>

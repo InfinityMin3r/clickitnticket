@@ -9,13 +9,43 @@ Router.route('/', function(){
 });
 
 Router.route('/add', function(){
-	this.render('submit');
+	if ( Meteor.userId() ) this.render('submit');
+        else this.render('loginButtons');
 });
 
 Router.route('/admin', function(){
     if ( Meteor.userId() ) this.render('admin');
     else this.render('loginButtons');
 });
+
+Router.route('/view/:_ticket', {
+    name: 'singleticket',
+    template: 'singleticket',
+    data: function () {
+	const numtofind = parseInt(this.params._ticket);
+	var result = Tickets.findOne( { number: numtofind } );
+	if ( result ){
+	    return result;
+	}
+	else
+	{
+	    //Router.go('/');
+	}
+    },
+    action: function(){
+	this.render();
+    },
+});
+
+Template.singleticket.rendered = function(){
+    $(document).ready(function(){
+        setTimeout(function(){
+            if ($("body").find("h1").text() == ""){
+                Router.go('/');
+            }
+        }, 500);
+    });
+};
 
 Template.ticketview.helpers({
 	tickets() {
