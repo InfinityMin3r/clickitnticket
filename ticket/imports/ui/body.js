@@ -1,7 +1,9 @@
+// Import external meteor packages
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Tickets } from '../api/tickets.js';
 
+// Import HTML pages
 import './admin.html';
 import './home.html';
 import './singleticket.html';
@@ -10,6 +12,7 @@ import './ticket.html';
 import './ticketview.html';
 import './login.html';
 
+// Non-blocking alert for bad user-input
 function badform() {
   $(document).ready(function () {
     toastr;
@@ -33,6 +36,7 @@ function badform() {
   });
 }
 
+// Non-blocking alert for invalid ticket number
 function invalidTicketNumber() {
   $(document).ready(function () {
     toastr;
@@ -56,28 +60,38 @@ function invalidTicketNumber() {
   });
 }
 
+/*
+Routing functions.  Controls how users move throughout the site. 
+Most routes include checks for user authentication to protect information
+*/
+
+// Primary route, runs the homepage template when a user browses to the root of the site.
 Router.route('/', function () {
   this.render('homepage');
 });
 
+// Route for viewing all tickets. Checks if user is authenticated, if not, redirect to login page.
 Router.route('/view', function () {
   if (Meteor.userId()) {
     this.render('ticketview');
   } else this.render('login');
 });
 
+// Route for creating a ticket. Checks if user is authenticated, if not, redirect to login page.
 Router.route('/add', function () {
   if (Meteor.userId()) {
     this.render('submit');
   } else this.render('login');
 });
 
+// Route for admin page.  Not currently used, template for future expanion.
 Router.route('/admin', function () {
   if (Meteor.userId()) {
     this.render('admin');
   } else this.render('login');
 });
 
+// Route for loading specific ticket.  Used for unauthenticated viewing.
 Router.route('/view/:ticket', {
   name: 'singleticket',
   template: 'singleticket',
@@ -91,34 +105,42 @@ Router.route('/view/:ticket', {
   },
 });
 
+// Functions for logout.
+
+// Redirects user to homepage after logout.
 const myPostLogout = function () {
   Router.go('/');
 };
 
+// Defines logout hook, enabled above function.
 AccountsTemplates.configure({
   onLogoutHook: myPostLogout,
 });
 
+// Event for logout button on single ticket page.
 Template.singleticket.events({
   'click #logout': function () {
     AccountsTemplates.logout();
   },
 });
 
+// Event for logout button on create ticket page.
 Template.submit.events({
   'click #logout': function () {
     AccountsTemplates.logout();
   },
 });
 
+// Event for logout button on ticket list page.
 Template.ticketview.events({
   'click #logout': function () {
     AccountsTemplates.logout();
   },
 });
 
+// Events for homoepage.
 Template.homepage.events({
-  'click #submitbutton': function (event) {
+  'click #submitbutton': function (event) { // Event for submit button.  Checks of number is valid, then loads single ticket view
     event.preventDefault();
     const target = event.target.parentElement.parentElement;
     const ticketnum = target.yourticketinput.value;
@@ -131,12 +153,13 @@ Template.homepage.events({
     }
     Router.go('/view/' + ticketnum);
   },
-  'click #btn-login': function (event) {
+  'click #btn-login': function (event) { // Event for login button.  Call ticket list route
     event.preventDefault();
     Router.go('/view');
   },
 });
 
+// Check if user directly inputs ticket number into URL, return to homepage if invalid number
 Template.singleticket.rendered = function () {
   $(document).ready(function () {
     setTimeout(function () {
@@ -147,20 +170,22 @@ Template.singleticket.rendered = function () {
   });
 };
 
+// Sorts tickets but order of creation for ticket list
 Template.ticketview.helpers({
   tickets() {
     return Tickets.find({}, { sort: { createdAt: -1 } });
   },
 });
 
+// Events for ticket list
 Template.ticketview.events({
-  'click .ticket-list .tbtn': function (event) {
+  'click .ticket-list .tbtn': function (event) { // Event for ticket toggle button, expands current ticket.
     const target = event.target;
     $(target).parent().parent().parent()
     .find('ul')
     .toggle();
   },
-  'click .btn-open': function (event) {
+  'click .btn-open': function (event) { // Event for open ticket button.  Loads current ticket on single page.
     const target = event.target;
     const numtofind = $(target).parent().parent().parent()
     .parent()
@@ -168,7 +193,7 @@ Template.ticketview.events({
     .text();
     Router.go('/view/' + numtofind);
   },
-  'click .btn-resolve': function (event) {
+  'click .btn-resolve': function (event) { // Event for resolve ticket button.  Changes ticket status to resolve.
     const target = event.target;
     $(target).toggle();
     const numtofind = parseInt($(target).parent().parent().parent()
@@ -180,8 +205,9 @@ Template.ticketview.events({
   },
 });
 
+// Events for single ticket
 Template.singleticket.events({
-  'click .btn-resolve': function (event) {
+  'click .btn-resolve': function (event) { // Event for resolve ticket button.  Changes ticket status to resolve.
     event.preventDefault();
     const target = event.target;
     $(target).toggle();
@@ -189,7 +215,7 @@ Template.singleticket.events({
     const ticket = Tickets.findOne({ number: numtofind });
     Tickets.update({ _id: ticket._id }, { $set: { status: false } });
   },
-  'submit form': function (event) {
+  'submit form': function (event) { // Event for ticket commenting.  Logs current username and adds new ticket.
     event.preventDefault();
     const target = event.target;
     const numtofind = parseInt($('#ticketnum').text(), 10);
@@ -209,23 +235,9 @@ Template.singleticket.events({
   },
 });
 
-Template.submit.onCreated(function submitOnCreated() {
-  // variable to keep track of final priority value
-  this.prioritysel = new ReactiveVar('D');
-  this.priorityclass = new ReactiveVar('btn-info');
-});
-
-Template.submit.helpers({
-  prioritysel() {
-    return Template.instance().prioritysel.get();
-  },
-  priorityclass() {
-    return Template.instance().priorityclass.get();
-  },
-});
-
+// Event for new ticket submission.
 Template.submit.events({
-  'click #submit-btn'(event) {
+  'click #submit-btn'(event) { // Store all fields and log current user information
     event.preventDefault();
     const target = event.target.parentElement;
     const description = target.description.value;
@@ -236,13 +248,15 @@ Template.submit.events({
     const status = true;
     const comments = [];
     let number = Tickets.findOne({}, { sort: { createdAt: -1 } });
-    if (typeof (number) === 'undefined') {
+    if (typeof (number) === 'undefined') { // Set ticketnumber
       number = 2760001;
     } else number = number.number + 1;
+    // Check if all fields complete, do not submit if missing information
     if (description === '' || priority === '' || youremail === '' || rpiemail === '' || issuetype === '') {
       badform();
       return false;
     }
+    // Store ticket information in database
     Tickets.insert({
       description,
       youremail,
@@ -254,7 +268,7 @@ Template.submit.events({
       comments,
       createdAt: new Date(),
     });
-
+    // Route user to ticket list
     Router.go('/view');
   },
 });
