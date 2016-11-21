@@ -1,11 +1,23 @@
 <template name="singleticket">
   <div class="container ticket-list">
-    <label><h1>{{number}}</h1></label>
+    <label><h1><span id="ticketnum">{{number}}</span></h1></label>
       <li>
         <p><strong>Reported by:</strong> {{rpiemail}}</p>
         <p><strong>Issue Type:</strong> {{issuetype}}</p>
         <p><strong>Description:</strong> {{description}}</p>
         <p><strong>Status:</strong> {{status}}</p>
       </li>
+			<div class="container">
+				<h1>Comments:</h1>
+				{{#each comments}}
+				  <h2>{{author}}</h2>
+					<p>{{{body}}}</p>
+				{{/each}}
+				{{#if currentUser}}
+					<form>
+						<input type="text" id="commentbody" style="width: 100%;" placeholder="Add comment..." />
+					</form>
+				{{/if}}
+			</div>
   </div>
 </template>

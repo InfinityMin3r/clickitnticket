@@ -69,7 +69,7 @@ Router.route('/view/:ticket', {
 Template.singleticket.rendered = function () {
   $(document).ready(function () {
     setTimeout(function () {
-      if ($('body').find('h1').text() === '') {
+      if ($('body').find('#ticketnum').text() === '') {
         Router.go('/');
       }
     }, 500);
@@ -98,6 +98,31 @@ Template.ticketview.events({
     const doc = Tickets.findOne({ number: numtofind });  // change me
     Tickets.update({ _id: doc._id }, { $set: { status: 'resolved' } });
   },
+});
+
+Template.singleticket.events({
+		'submit form': function (event) {
+				event.preventDefault();
+				const target = event.target;
+				const numtofind = parseInt( $('#ticketnum').text(), 10 );
+				const author = Meteor.user().emails[0].address;
+				const body   = target.commentbody.value;
+				console.log(numtofind + "|" + author + "|" + body);
+				const ticket = Tickets.findOne({ number: numtofind }); //get the actual ticket
+				console.log(ticket);
+				const arro   = ticket.comments;
+				let   arrnew = [{}];
+				if (typeof(arro) === "undefined"){
+						console.log(arro);
+						arrnew = [{author, body}];
+				}
+				else{
+						arrnew = arro;
+						arrnew.push({author, body});
+				}
+				Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } });
+				target.commentbody.value = "";
+		},
 });
 
 Template.submit.onCreated(function submitOnCreated() {
@@ -146,6 +171,7 @@ Template.submit.events({
     const rpiemail = target.rpiemailin.value;
     const issuetype = target.issuetype.value;
     const status = 'new-ticket';
+		const comments = [{}];
     let number = Tickets.findOne({}, { sort: { createdAt: -1 } });
     if (typeof (number) === 'undefined') {
       number = 2760001;
@@ -162,6 +188,7 @@ Template.submit.events({
       priority,
       number,
       status,
+			comments,
       createdAt: new Date(),
     });
 
