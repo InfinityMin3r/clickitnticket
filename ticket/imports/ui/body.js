@@ -8,6 +8,7 @@ import './singleticket.html';
 import './submit.html';
 import './ticket.html';
 import './ticketview.html';
+import './login.html';
 
 function badform() {
   $(document).ready(function () {
@@ -39,18 +40,19 @@ Router.route('/', function () {
 Router.route('/view', function () {
   if (Meteor.userId()) {
     this.render('ticketview');
-  } else Router.go('/');
+  } else this.render('login');
 });
 
 Router.route('/add', function () {
   if (Meteor.userId()) {
     this.render('submit');
-  } else this.render('loginButtons');
+  } else this.render('login');
 });
 
 Router.route('/admin', function () {
-  if (Meteor.userId()) this.render('admin');
-  else this.render('loginButtons');
+  if (Meteor.userId()) {
+    this.render('admin');
+  } else this.render('login');
 });
 
 Router.route('/view/:ticket', {
