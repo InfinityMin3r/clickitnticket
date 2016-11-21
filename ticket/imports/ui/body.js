@@ -96,10 +96,13 @@ Template.homepage.events({
     event.preventDefault();
     const target = event.target.parentElement.parentElement;
     const ticketnum = target.yourticketinput.value;
-/*  if () {
-      invalidTicketNumber();
+		const ticketint = parseInt(ticketnum, 10);
+		const result = Tickets.findOne({ number: ticketint });
+		if (typeof(result) === 'undefined') {
+				target.yourticketinput.value = '';
+				invalidTicketNumber();
+				return;
     }
-*/
     Router.go('/view/' + ticketnum);
   },
   'click #btn-login': function (event) {
