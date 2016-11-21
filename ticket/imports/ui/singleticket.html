@@ -1,5 +1,11 @@
+<!-- 
+This page displays a single ticket and comments.  Certain fields are restricted to authenticated viewers,
+as is the resolve button and comment add field.
+-->
+
 <template name="singleticket">
   <br />
+  <!-- This section displays the info for the ticket -->
   <div class="container ticket-list">
     <label><h1><span id="ticketnum">{{number}}</span></h1></label>
     <li>
@@ -18,6 +24,8 @@
       {{/if}}
     </li>
   </div>
+
+  <!-- This section displays each existing comment and the add comment field for authenticated viewers -->
   <div>
     <h1 style="text-align: center">Comments:</h1>
       {{#each comments}}
