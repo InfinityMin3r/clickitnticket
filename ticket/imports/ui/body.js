@@ -1,6 +1,5 @@
 // Import external meteor packages
 import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
 import { Tickets } from '../api/tickets.js';
 
 // Import HTML pages
@@ -61,7 +60,7 @@ function invalidTicketNumber() {
 }
 
 /*
-Routing functions.  Controls how users move throughout the site. 
+Routing functions.  Controls how users move throughout the site.
 Most routes include checks for user authentication to protect information
 */
 
