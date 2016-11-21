@@ -186,7 +186,7 @@ Template.submit.events({
     const rpiemail = target.rpiemailin.value;
     const issuetype = target.issuetype.value;
     const status = 'new-ticket';
-		const comments = [{}];
+		const comments = [];
     let number = Tickets.findOne({}, { sort: { createdAt: -1 } });
     if (typeof (number) === 'undefined') {
       number = 2760001;
