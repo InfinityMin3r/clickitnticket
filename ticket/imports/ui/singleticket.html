@@ -22,7 +22,13 @@ as is the resolve button and comment add field.
         <p><strong>Priority:</strong> {{priority}}</p>
       {{/if}}
       <p><strong>Description:</strong> {{description}}</p>
-      <p><strong>Status:</strong> {{status}}</p>
+      <p><strong>Status: </strong> 
+        {{#if status}}
+          New Ticket
+        {{else}}
+          Resolved
+        {{/if}}
+      </p>
       {{#if currentUser}}
         <p><button class="btn btn-success btn-block btn-resolve">Resolve!</button></p>
       {{/if}}

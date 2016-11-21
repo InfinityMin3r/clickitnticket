@@ -8,7 +8,13 @@
         <p><strong>Issue Type:</strong> {{issuetype}}</p>
         <p><strong>Priority:</strong> {{priority}}</p>
         <p><strong>Description:</strong> {{description}}</p>
-        <p><strong>Status:</strong> {{status}}</p>
+        <p><strong>Status: </strong>
+          {{#if status}}
+            New Ticket
+          {{else}}
+            Resolved
+          {{/if}}
+        </p>
         {{#if currentUser}}
           <p><button class="btn btn-primary btn-block btn-open">View Ticket</button></p>
           <p><button class="btn btn-success btn-block btn-resolve">Resolve!</button></p>

@@ -120,7 +120,7 @@ Template.ticketview.events({
       .find('.ticketnum')
       .text(), 10);
     const ticket = Tickets.findOne({ number: numtofind });
-    Tickets.update({ _id: ticket._id }, { $set: { status: 'resolved' } });
+    Tickets.update({ _id: ticket._id }, { $set: { status: false } });
   },
 });
 
@@ -132,7 +132,7 @@ Template.singleticket.events({
 				$(target).toggle();
 				const numtofind = parseInt( $('#ticketnum').text(), 10 );
 				const ticket = Tickets.findOne({ number: numtofind });
-				Tickets.update({ _id: ticket._id }, { $set: { status: 'resolved' } });
+				Tickets.update({ _id: ticket._id }, { $set: { status: false } });
 		},
 		'submit form': function (event) {
 				event.preventDefault();
@@ -203,7 +203,7 @@ Template.submit.events({
     const youremail = Meteor.user().emails[0].address;
     const rpiemail = target.rpiemailin.value;
     const issuetype = target.issuetype.value;
-    const status = 'new-ticket';
+    const status = true;
 		const comments = [];
     let number = Tickets.findOne({}, { sort: { createdAt: -1 } });
     if (typeof (number) === 'undefined') {
