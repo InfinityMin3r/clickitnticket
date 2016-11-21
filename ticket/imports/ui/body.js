@@ -5,26 +5,26 @@ import { Tickets } from '../api/tickets.js';
 import './body.html';
 
 function badform() {
-      $(document).ready(function(){
-        toastr;
-        toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": true,
-                        "progressBar": true,
-                        "positionClass": "toast-top-full-width",
-                        "preventDuplicates": true,
-                        "showDuration": "3000",
-                        "hideDuration": "3000",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "3000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-        }
-          toastr['warning']("Please fill out all fields!", "Empty Fields!");
-      });
+  $(document).ready(function () {
+    toastr;
+    toastr.options = {
+      closeButton: false,
+      debug: false,
+      newestOnTop: true,
+      progressBar: true,
+      positionClass: 'toast-top-full-width',
+      preventDuplicates: true,
+      showDuration: '3000',
+      hideDuration: '3000',
+      timeOut: '3000',
+      extendedTimeOut: '3000',
+      showEasing: 'swing',
+      hideEasing: 'linear',
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut',
+    };
+    toastr.warning('Please fill out all fields!', 'Empty Fields!');
+  });
 }
 
 Router.route('/', function () {
@@ -32,8 +32,9 @@ Router.route('/', function () {
 });
 
 Router.route('/add', function () {
-  if ( Meteor.userId() ) this.render('submit');
-        else this.render('loginButtons');
+  if (Meteor.userId()) {
+    this.render('submit');
+  } else this.render('loginButtons');
 });
 
 Router.route('/admin', function () {
@@ -45,9 +46,9 @@ Router.route('/view/:ticket', {
   name: 'singleticket',
   template: 'singleticket',
   data: function () {
-    const numtofind = parseInt(this.params.ticket);
+    const numtofind = parseInt(this.params.ticket, 10);
     const result = Tickets.findOne({ number: numtofind });
-    if ( result ) return result;
+    if (result) return result;
   },
   action: function () {
     this.render();
@@ -77,13 +78,15 @@ Template.ticketview.events({
     .find('ul')
     .toggle();
   },
-	'click .btn-resolve': function (event){
-			const target = event.target;
-			const numtofind = parseInt( $(target).parent().parent().parent().parent().find('.ticketnum').text() );
-			var doc = Tickets.findOne( { number: numtofind } );  //change me
-			Tickets.update( { _id: doc._id }, {$set: {status: "resolved"} } );
-			console.log(Tickets.findOne( { number: numtofind } ).status);
-   } 
+  'click .btn-resolve': function (event) {
+    const target = event.target;
+    const numtofind = parseInt($(target).parent().parent().parent()
+      .parent()
+      .find('.ticketnum')
+      .text(), 10);
+    const doc = Tickets.findOne({ number: numtofind });  // change me
+    Tickets.update({ _id: doc._id }, { $set: { status: 'resolved' } });
+  },
 });
 
 Template.submit.onCreated(function submitOnCreated() {
