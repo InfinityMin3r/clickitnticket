@@ -68,6 +68,19 @@ Router.route('/view/:ticket', {
   },
 });
 
+Template.homepage.events({
+		'click #submitbutton': function (event) {
+				event.preventDefault();
+				const target = event.target.parentElement.parentElement;
+				const ticketnum = target.yourticketinput.value;
+				Router.go('/view/' + ticketnum);
+		},
+		'click #btn-login': function (event) {
+				event.preventDefault();
+				Router.go('/view');
+		}
+});
+
 Template.singleticket.rendered = function () {
   $(document).ready(function () {
     setTimeout(function () {
@@ -97,8 +110,8 @@ Template.ticketview.events({
       .parent()
       .find('.ticketnum')
       .text(), 10);
-    const doc = Tickets.findOne({ number: numtofind });  // change me
-    Tickets.update({ _id: doc._id }, { $set: { status: 'resolved' } });
+    const ticket = Tickets.findOne({ number: numtofind });
+    Tickets.update({ _id: ticket._id }, { $set: { status: 'resolved' } });
   },
 });
 
