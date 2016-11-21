@@ -41,15 +41,13 @@ Router.route('/admin', function () {
   else this.render('loginButtons');
 });
 
-Router.route('/view/:_ticket', {
+Router.route('/view/:ticket', {
   name: 'singleticket',
   template: 'singleticket',
   data: function () {
     const numtofind = parseInt(this.params.ticket);
     const result = Tickets.findOne({ number: numtofind });
-    if (result) {
-      return result;
-    }
+    if ( result ) return result;
   },
   action: function () {
     this.render();
