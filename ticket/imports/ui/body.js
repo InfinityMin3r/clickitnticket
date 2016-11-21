@@ -31,8 +31,9 @@ Router.route('/', function() {
 		this.render('homepage');
 });
 
-Router.route('/home', function () {
-  this.render('ticketview');
+Router.route('/view', function () {
+  if (Meteor.userId()) this.render('ticketview');
+	else Router.go('/');
 });
 
 Router.route('/add', function () {
