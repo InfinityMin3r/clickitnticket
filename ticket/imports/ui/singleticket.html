@@ -12,6 +12,7 @@ as is the resolve button and comment add field.
   <div class="container ticket-list">
     <label><h1><span id="ticketnum">{{number}}</span></h1></label>
     <li>
+      <p><strong>Created at:</strong> {{createdAt}}</p>
       <p><strong>Reported by:</strong> {{rpiemail}}</p>
       {{#if currentUser}}
         <p><strong>Submitted By:</strong> {{youremail}}</p>
