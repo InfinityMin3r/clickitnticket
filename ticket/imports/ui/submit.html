@@ -3,6 +3,9 @@ This page allows an authenticated viewer to create a ticket.
 -->
 
 <template name="submit">
+  {{#if currentUser}}
+    <a href="/view" class="btn btn-info" style="margin-bottom: 10px" >Return to Ticket List</a>
+  {{/if}}
   <div class="container ticket-box">
     <form>
       <!-- Section for page title -->
