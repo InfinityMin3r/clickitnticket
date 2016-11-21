@@ -239,11 +239,15 @@ Template.submit.events({
   'click #submit-btn'(event) { // Store all fields and log current user information
     event.preventDefault();
     const target = event.target.parentElement;
-    const description = target.description.value;
-    const priority = target.priority.value;
-    const youremail = Meteor.user().emails[0].address;
+    const namein = target.namein.value;
     const rpiemail = target.rpiemailin.value;
+    const altemail = target.altemailin.value;
+    const phonein = target.phonein.value;
     const issuetype = target.issuetype.value;
+    const priority = target.priority.value;
+    const summary = target.summary.value;
+    const description = target.description.value;
+    const youremail = Meteor.user().emails[0].address;
     const status = true;
     const comments = [];
     let number = Tickets.findOne({}, { sort: { createdAt: -1 } });
@@ -257,11 +261,15 @@ Template.submit.events({
     }
     // Store ticket information in database
     Tickets.insert({
-      description,
-      youremail,
+      namein,
       rpiemail,
+      altemail,
+      phonein,
       issuetype,
       priority,
+      summary,
+      description,
+      youremail,
       number,
       status,
       comments,
