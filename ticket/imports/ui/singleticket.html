@@ -4,6 +4,9 @@ as is the resolve button and comment add field.
 -->
 
 <template name="singleticket">
+  {{#if currentUser}}
+    <a href="/view" class="btn btn-info" style="margin-bottom: 10px" >Return to Ticket List</a>
+  {{/if}}
   <br />
   <!-- This section displays the info for the ticket -->
   <div class="container ticket-list">
