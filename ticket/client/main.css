@@ -104,34 +104,34 @@ li {
 }
 
 html, body {
-    height: 100%;
+  height: 100%;
 }
 
 .wrapper {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -35px; /* the bottom margin is the negative value of the footer's height */
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -35px;
 }
 .footer, .push {
-    height: 35px; /* .push must be the same height as .footer */
+  height: 35px;
 }
 
 .at-title{
-    font-size: 36px;
-    font-family: 'Poiret One', cursive;
+  font-size: 36px;
+  font-family: 'Poiret One', cursive;
 }
 
 .centered-text{
-    text-align: center;
+  text-align: center;
 }
 
 .cursor-normal{
-    cursor: default;
+  cursor: default;
 }
 
 .cursor-pointer{
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .at-form{
