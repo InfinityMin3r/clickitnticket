@@ -182,7 +182,7 @@ Template.submit.events({
     const target = event.target.parentElement;
     const description = target.description.value;
     const priority = target.finalpriority.innerHTML;
-    const youremail = target.youremailin.value;
+    const youremail = Meteor.user().emails[0].address;
     const rpiemail = target.rpiemailin.value;
     const issuetype = target.issuetype.value;
     const status = 'new-ticket';
