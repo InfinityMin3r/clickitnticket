@@ -49,9 +49,15 @@ as is the resolve button and comment add field.
       {{/each}}
     {{#if currentUser}}
       <form class="container ticket-list">
-        <input type="text" id="commentbody" style="width: 100%;" placeholder="Add comment..." />
+        {{#if status}}
+          <input type="text" id="commentbody" style="width: 100%;" placeholder="Add comment..." />
+        {{else}}
+          <p style="width: 100%; margin-bottom: 0px"><em>Ticket is resolved, commenting disabled.</em></p>
+        {{/if}}
       </form>
       <br />
+
+
     {{/if}}
   </div>
 </template>
