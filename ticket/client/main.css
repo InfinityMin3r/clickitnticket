@@ -116,3 +116,34 @@ html, body {
 .footer, .push {
     height: 35px; /* .push must be the same height as .footer */
 }
+
+.at-title{
+    font-size: 36px;
+    font-family: 'Poiret One', cursive;
+}
+
+.centered-text{
+    text-align: center;
+}
+
+.cursor-normal{
+    cursor: default;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.at-form{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px black;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, .7);
+    padding: 10px;
+    width: 400px;
+}
