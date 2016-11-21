@@ -106,6 +106,7 @@ Template.ticketview.events({
   },
   'click .btn-resolve': function (event) {
     const target = event.target;
+		$(target).toggle();
     const numtofind = parseInt($(target).parent().parent().parent()
       .parent()
       .find('.ticketnum')
@@ -116,6 +117,15 @@ Template.ticketview.events({
 });
 
 Template.singleticket.events({
+		'click .btn-resolve': function (event) {
+				event.preventDefault();
+				console.log("Got event!");
+				const target = event.target;
+				$(target).toggle();
+				const numtofind = parseInt( $('#ticketnum').text(), 10 );
+				const ticket = Tickets.findOne({ number: numtofind });
+				Tickets.update({ _id: ticket._id }, { $set: { status: 'resolved' } });
+		},
 		'submit form': function (event) {
 				event.preventDefault();
 				const target = event.target;
