@@ -2,13 +2,19 @@
 </body>
 
 <template name="homepage">
-  <div style="text-align: center">
+  <div class="homepage wrapper" style="text-align: center">
     <p class="title">Welcome to the Rensselaer Polytechnic Institute Fall 2016 Software Design and Documentation IT Crowd (definitely not the TV Show)'s Ticketing System</p>
-    <div class="col-xl-6 center-block" style="float:none; text-align: center;">
-      <p>
-        <a class="btn btn-primary btn-lg btn-custom-width" href="./view" role="button">User Login</a>
-        <a class="btn btn-primary btn-lg btn-custom-width" href="./ticketnumber.html" role="button">Ticket Viewing</a>
-      </p>
-    </div>
+    <p class="lead">To review the status of an existing ticket, enter the ticket number below:</p>
+    <form>
+      <div class="form-group">
+        <label for="yourticketinput">Your Ticket Number</label>
+        <input type="text" class="ticket-search form-control" id="yourticketinput" placeholder="#######" />
+        <input type="submit" class="ticket-search form-control" id="submitbutton" />
+      </div>
+    </form>
+    <div class="push"></div>
+  </div>
+  <div class="footer" style="text-align: center">
+    <a class="btn btn-primary" href="./view" role="button">User Login</a>
   </div>
 </template>
