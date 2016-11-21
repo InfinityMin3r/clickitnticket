@@ -60,6 +60,10 @@ form{
   user-select: none;       
   font-family: 'David Libre', serif;
 }
+.asteric{
+  color: red; 
+  font-weight: bold;
+}
 
 
 /* Styling for ticket and comment views */
