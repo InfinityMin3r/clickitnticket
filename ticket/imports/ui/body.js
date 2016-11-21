@@ -111,7 +111,7 @@ const myPostLogout = function () {
   Router.go('/');
 };
 
-// Defines logout hook, enabled above function.
+// Defines logout hook, enabling above function.
 AccountsTemplates.configure({
   onLogoutHook: myPostLogout,
 });
