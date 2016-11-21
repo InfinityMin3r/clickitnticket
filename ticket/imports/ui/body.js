@@ -33,6 +33,29 @@ function badform() {
   });
 }
 
+function invalidTicketNumber() {
+  $(document).ready(function () {
+    toastr;
+    toastr.options = {
+      closeButton: false,
+      debug: false,
+      newestOnTop: true,
+      progressBar: true,
+      positionClass: 'toast-top-full-width',
+      preventDuplicates: true,
+      showDuration: '3000',
+      hideDuration: '3000',
+      timeOut: '3000',
+      extendedTimeOut: '3000',
+      showEasing: 'swing',
+      hideEasing: 'linear',
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut',
+    };
+    toastr.warning('Please double check your input and try again.', 'Invalid Ticket Number!');
+  });
+}
+
 Router.route('/', function () {
   this.render('homepage');
 });
@@ -69,16 +92,20 @@ Router.route('/view/:ticket', {
 });
 
 Template.homepage.events({
-		'click #submitbutton': function (event) {
-				event.preventDefault();
-				const target = event.target.parentElement.parentElement;
-				const ticketnum = target.yourticketinput.value;
-				Router.go('/view/' + ticketnum);
-		},
-		'click #btn-login': function (event) {
-				event.preventDefault();
-				Router.go('/view');
-		}
+  'click #submitbutton': function (event) {
+    event.preventDefault();
+    const target = event.target.parentElement.parentElement;
+    const ticketnum = target.yourticketinput.value;
+/*  if () {
+      invalidTicketNumber();
+    }
+*/
+    Router.go('/view/' + ticketnum);
+  },
+  'click #btn-login': function (event) {
+    event.preventDefault();
+    Router.go('/view');
+  },
 });
 
 Template.singleticket.rendered = function () {
@@ -104,17 +131,17 @@ Template.ticketview.events({
     .find('ul')
     .toggle();
   },
-	'click .btn-open': function (event) {
-			const target = event.target;
-			const numtofind = $(target).parent().parent().parent()
-      .parent()
-      .find('.ticketnum')
-      .text();
-			Router.go('/view/' + numtofind); 
-	},
+  'click .btn-open': function (event) {
+    const target = event.target;
+    const numtofind = $(target).parent().parent().parent()
+    .parent()
+    .find('.ticketnum')
+    .text();
+    Router.go('/view/' + numtofind);
+  },
   'click .btn-resolve': function (event) {
     const target = event.target;
-		$(target).toggle();
+    $(target).toggle();
     const numtofind = parseInt($(target).parent().parent().parent()
       .parent()
       .find('.ticketnum')
@@ -125,37 +152,32 @@ Template.ticketview.events({
 });
 
 Template.singleticket.events({
-		'click .btn-resolve': function (event) {
-				event.preventDefault();
-				console.log("Got event!");
-				const target = event.target;
-				$(target).toggle();
-				const numtofind = parseInt( $('#ticketnum').text(), 10 );
-				const ticket = Tickets.findOne({ number: numtofind });
-				Tickets.update({ _id: ticket._id }, { $set: { status: false } });
-		},
-		'submit form': function (event) {
-				event.preventDefault();
-				const target = event.target;
-				const numtofind = parseInt( $('#ticketnum').text(), 10 );
-				const author = Meteor.user().emails[0].address;
-				const body   = target.commentbody.value;
-				console.log(numtofind + "|" + author + "|" + body);
-				const ticket = Tickets.findOne({ number: numtofind }); //get the actual ticket
-				console.log(ticket);
-				const arro   = ticket.comments;
-				let   arrnew = [{}];
-				if (typeof(arro) === "undefined"){
-						console.log(arro);
-						arrnew = [{author, body}];
-				}
-				else{
-						arrnew = arro;
-						arrnew.push({author, body});
-				}
-				Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } });
-				target.commentbody.value = "";
-		},
+  'click .btn-resolve': function (event) {
+    event.preventDefault();
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($('#ticketnum').text(), 10);
+    const ticket = Tickets.findOne({ number: numtofind });
+    Tickets.update({ _id: ticket._id }, { $set: { status: false } });
+  },
+  'submit form': function (event) {
+    event.preventDefault();
+    const target = event.target;
+    const numtofind = parseInt($('#ticketnum').text(), 10);
+    const author = Meteor.user().emails[0].address;
+    const body = target.commentbody.value;
+    const ticket = Tickets.findOne({ number: numtofind }); // get the actual ticket
+    const arro = ticket.comments;
+    let arrnew = [{}];
+    if (typeof (arro) === 'undefined') {
+      arrnew = [{ author, body }];
+    } else {
+      arrnew = arro;
+      arrnew.push({ author, body });
+    }
+    Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } });
+    target.commentbody.value = '';
+  },
 });
 
 Template.submit.onCreated(function submitOnCreated() {
@@ -183,13 +205,13 @@ Template.submit.events({
     const rpiemail = target.rpiemailin.value;
     const issuetype = target.issuetype.value;
     const status = true;
-		const comments = [];
+    const comments = [];
     let number = Tickets.findOne({}, { sort: { createdAt: -1 } });
     if (typeof (number) === 'undefined') {
       number = 2760001;
     } else number = number.number + 1;
     if (description === '' || priority === '' || youremail === '' || rpiemail === '' || issuetype === '') {
-      badform("Something wasn't set, try again!");
+      badform();
       return false;
     }
     Tickets.insert({
@@ -200,7 +222,7 @@ Template.submit.events({
       priority,
       number,
       status,
-			comments,
+      comments,
       createdAt: new Date(),
     });
 

@@ -6,6 +6,11 @@
     
     "rules": {
     	"no-undef": "off",
+        "no-underscore-dangle": "off",
+        "prefer-arrow-callback": "off",
+        "prefer-template": "off",
+        "consistent-return": "off",
+        "no-unused-expressions": "off",
     	"func-names": "off",
     	"object-shorthand": "off",
         "import/extensions": [
