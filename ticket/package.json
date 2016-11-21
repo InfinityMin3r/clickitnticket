@@ -5,9 +5,9 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "meteor": "^1.4.2.3",
     "babel-runtime": "^6.18.0",
     "bcrypt": "^0.8.7",
+    "meteor": "^1.4.2.3",
     "meteor-node-stubs": "~0.2.0"
   },
   "devDependencies": {
