@@ -1,6 +1,4 @@
-<!--
-This page allows an authenticated viewer to create a ticket.
--->
+<!-- This page allows an authenticated viewer to create a ticket. -->
 
 <template name="submit">
   {{#if currentUser}}
@@ -9,15 +7,18 @@ This page allows an authenticated viewer to create a ticket.
   {{/if}}
   <div class="container ticket-box">
     <form>
+
       <!-- Section for page title -->
       <div class="form-group">
         <h3 class="text-center head-text">Ticket Submission:</h3>
       </div>
+
       <!-- Section for reportees email address -->
       <div class="form-group">
         <label for="rpiemailinput">Contact Email</label>
         <input type="email" class="form-control" id="rpiemailin" placeholder="email@rpi.edu" />
       </div>
+
       <!-- Section for issue type selection -->
       <div class="form-group">
         <label for="issuetype">Issue Type</label>
@@ -27,6 +28,8 @@ This page allows an authenticated viewer to create a ticket.
           <option value="printer">Printer</option>
         </select>
       </div>
+
+      <!-- Section for priority selection -->
 			<div class="form-group">
 				<label for="priority">Priority</label>
 				<select class="form-control" id="priority">
@@ -36,12 +39,14 @@ This page allows an authenticated viewer to create a ticket.
 					<option value="Priority D" selected>Priority D</option>
 				</select>
 			</div>
+
       <!-- Section for issue description -->
       <div class="form-group">
         <label for="description">Please Describe Issue:</label>
         <textarea class="form-control" name="description" id="description"></textarea>
       </div>
-      <!-- Section for priority selection -->
+
+      <!-- Submit button -->
       <button class="btn btn-primary btn-block" id="submit-btn">Submit</button>
     </form>
   </div>

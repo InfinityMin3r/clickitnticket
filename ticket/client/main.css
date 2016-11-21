@@ -1,6 +1,8 @@
-/* CSS declarations go here */
+/* Import Fonts */
 @import 'https://fonts.googleapis.com/css?family=David+Libre';
 
+
+/* Custom Background */
 body{
   background:url('assets/weather.png') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -9,25 +11,23 @@ body{
   background-size: cover;
 }
 
+
+/* Form width */
 form{
   width: 29.4vw;
   margin-left: auto;
   margin-right: auto;
 }
 
-.btn-custom-width {
-  width:180px;
-  margin-top: 4px;
-  margin-left: 50px;
-  margin-right: 50px;
-}
 
+/* Title style */
 .title{
-
   font-size: 40px;
   margin-bottom: 75px;
 }
 
+
+/* Styling for submit form */
 .ticket-box{
   background-color: rgba(255, 255, 255, .7);
   position: fixed;
@@ -40,7 +40,29 @@ form{
   box-shadow: 0 0 5px black;
   z-index: 2;
 }
+.ticket-box textarea{
+  resize: vertical;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;  /* Konqueror */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+  user-select: none;
+}
+.head-text{
+  /*http://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting-using-cssc*/
+  cursor: default;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;  /* Konqueror */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+  user-select: none;       
+  font-family: 'David Libre', serif;
+}
 
+
+/* Styling for ticket and comment views */
 .ticket-list{
   background-color: rgba(255, 255, 255, .7);
   position: relative;
@@ -55,58 +77,32 @@ form{
   text-align: center;  
   display: block;
 }
-
 .ticket-list .tbtn{
   cursor: pointer;
   font-style: italic;
   font-size: 40%;
 }
-
-.ticket-box textarea{
-  resize: vertical;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-  -khtml-user-select: none;  /* Konqueror */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* Internet Explorer/Edge */
-  user-select: none;
-}
- 
 li {
   position: relative;
   list-style: none;
   padding: 15px;
 }
- 
 .ticket-list ul{
   display: none;
 } 
+  
 
-.head-text{
-  /*http://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting-using-cssc*/
-  cursor: default;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-  -khtml-user-select: none;  /* Konqueror */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* Internet Explorer/Edge */
-  user-select: none;       
-  font-family: 'David Libre', serif;
-}
-
+/* Style for homepage */
 .ticket-search{
   width: 50% !important;
   display: inline !important;
 }
-
 .homepage {
   font-family: 'Segoe UI', 'Roboto', sans-serif;
 }
-
 html, body {
   height: 100%;
 }
-
 .wrapper {
   min-height: 100%;
   height: auto !important;
@@ -117,23 +113,12 @@ html, body {
   height: 35px;
 }
 
+
+/* Style for login page */
 .at-title{
   font-size: 36px;
   font-family: 'Poiret One', cursive;
 }
-
-.centered-text{
-  text-align: center;
-}
-
-.cursor-normal{
-  cursor: default;
-}
-
-.cursor-pointer{
-  cursor: pointer;
-}
-
 .at-form{
   position: fixed;
   top: 50%;
@@ -147,7 +132,6 @@ html, body {
   padding: 10px;
   width: 400px;
 }
-
 .at-pwd-form > form{
   width: 100%;
 }
