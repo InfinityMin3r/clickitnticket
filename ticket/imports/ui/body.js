@@ -91,17 +91,43 @@ Router.route('/view/:ticket', {
   },
 });
 
+const myPostLogout = function () {
+  Router.go('/');
+};
+
+AccountsTemplates.configure({
+  onLogoutHook: myPostLogout,
+});
+
+Template.singleticket.events({
+  'click #logout': function () {
+    AccountsTemplates.logout();
+  },
+});
+
+Template.submit.events({
+  'click #logout': function () {
+    AccountsTemplates.logout();
+  },
+});
+
+Template.ticketview.events({
+  'click #logout': function () {
+    AccountsTemplates.logout();
+  },
+});
+
 Template.homepage.events({
   'click #submitbutton': function (event) {
     event.preventDefault();
     const target = event.target.parentElement.parentElement;
     const ticketnum = target.yourticketinput.value;
-		const ticketint = parseInt(ticketnum, 10);
-		const result = Tickets.findOne({ number: ticketint });
-		if (typeof(result) === 'undefined') {
-				target.yourticketinput.value = '';
-				invalidTicketNumber();
-				return;
+    const ticketint = parseInt(ticketnum, 10);
+    const result = Tickets.findOne({ number: ticketint });
+    if (typeof (result) === 'undefined') {
+      target.yourticketinput.value = '';
+      invalidTicketNumber();
+      return;
     }
     Router.go('/view/' + ticketnum);
   },

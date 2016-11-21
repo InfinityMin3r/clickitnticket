@@ -1,5 +1,8 @@
 <!--This template is responsible for displaying the list of tickets -->
 <template name="ticketview">
+  {{#if currentUser}}
+    <button class="btn btn-info" id="logout" style="margin-bottom: 10px" >Log Out</button>
+  {{/if}}
   <ul>
     {{#each tickets}}
       {{> ticket}}
