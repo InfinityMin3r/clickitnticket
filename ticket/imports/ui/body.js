@@ -104,6 +104,14 @@ Template.ticketview.events({
     .find('ul')
     .toggle();
   },
+	'click .btn-open': function (event) {
+			const target = event.target;
+			const numtofind = $(target).parent().parent().parent()
+      .parent()
+      .find('.ticketnum')
+      .text();
+			Router.go('/view/' + numtofind); 
+	},
   'click .btn-resolve': function (event) {
     const target = event.target;
 		$(target).toggle();
