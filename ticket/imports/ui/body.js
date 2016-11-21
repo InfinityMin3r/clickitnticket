@@ -4,6 +4,29 @@ import { Tickets } from '../api/tickets.js';
 
 import './body.html';
 
+function badform() {
+      $(document).ready(function(){
+        toastr;
+        toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "positionClass": "toast-top-full-width",
+                        "preventDuplicates": true,
+                        "showDuration": "3000",
+                        "hideDuration": "3000",
+                        "timeOut": "3000",
+                        "extendedTimeOut": "3000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+        }
+          toastr['warning']("Please fill out all fields!", "Empty Fields!");
+      });
+}
+
 Router.route('/', function () {
   this.render('ticketview');
 });
@@ -109,7 +132,7 @@ Template.submit.events({
       number = 2760001;
     } else number = number.number + 1;
     if (description === '' || priority === '' || youremail === '' || rpiemail === '' || issuetype === '') {
-      alert("Something wasn't set, try again!");
+      badform("Something wasn't set, try again!");
       return false;
     }
     Tickets.insert({
