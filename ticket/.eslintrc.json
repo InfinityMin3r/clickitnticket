@@ -1,5 +1,10 @@
 {
     "extends": "airbnb",
+    "rules": {
+    	"no-undef": "off",
+    	"func-names": "off",
+    	"object-shorthand": "off"
+    },
     "installedESLint": true,
     "plugins": [
         "react",
