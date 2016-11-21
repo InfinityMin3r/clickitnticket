@@ -2,7 +2,12 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Tickets } from '../api/tickets.js';
 
-import './body.html';
+import './admin.html';
+import './home.html';
+import './singleticket.html';
+import './submit.html';
+import './ticket.html';
+import './ticketview.html';
 
 function badform() {
   $(document).ready(function () {
@@ -27,13 +32,14 @@ function badform() {
   });
 }
 
-Router.route('/', function() {
-		this.render('homepage');
+Router.route('/', function () {
+  this.render('homepage');
 });
 
 Router.route('/view', function () {
-  if (Meteor.userId()) this.render('ticketview');
-	else Router.go('/');
+  if (Meteor.userId()) {
+    this.render('ticketview');
+  } else Router.go('/');
 });
 
 Router.route('/add', function () {

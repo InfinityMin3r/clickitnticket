@@ -1,0 +1,11 @@
+<template name="ticketview">
+  <ul>
+    {{#each tickets}}
+      {{> ticket}}
+    {{/each}}
+    <br>
+    <div class="container ticket-list">
+      <label><a href="../add">Create Ticket</a></label>
+    </div>
+  </ul>
+</template>
