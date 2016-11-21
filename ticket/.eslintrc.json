@@ -1,9 +1,17 @@
 {
+    "settings": {
+        "import/resolver": "meteor"
+    },
     "extends": "airbnb",
+    
     "rules": {
     	"no-undef": "off",
     	"func-names": "off",
-    	"object-shorthand": "off"
+    	"object-shorthand": "off",
+        "import/extensions": [
+            "off", "never"
+        ],
+        "import/prefer-default-export" : "off"
     },
     "installedESLint": true,
     "plugins": [
