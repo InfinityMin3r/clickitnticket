@@ -1,23 +1,37 @@
 <template name="singleticket">
+  <br />
   <div class="container ticket-list">
     <label><h1><span id="ticketnum">{{number}}</span></h1></label>
-      <li>
-        <p><strong>Reported by:</strong> {{rpiemail}}</p>
-        <p><strong>Issue Type:</strong> {{issuetype}}</p>
-        <p><strong>Description:</strong> {{description}}</p>
-        <p><strong>Status:</strong> {{status}}</p>
-      </li>
-			<div class="container">
-				<h1>Comments:</h1>
-				{{#each comments}}
-				  <h2>{{author}}</h2>
-					<p>{{{body}}}</p>
-				{{/each}}
-				{{#if currentUser}}
-					<form>
-						<input type="text" id="commentbody" style="width: 100%;" placeholder="Add comment..." />
-					</form>
-				{{/if}}
-			</div>
+    <li>
+      <p><strong>Reported by:</strong> {{rpiemail}}</p>
+      {{#if currentUser}}
+        <p><strong>Submitted By:</strong> {{youremail}}</p>
+      {{/if}}
+      <p><strong>Issue Type:</strong> {{issuetype}}</p>
+      {{#if currentUser}}
+        <p><strong>Priority:</strong> {{priority}}</p>
+      {{/if}}
+      <p><strong>Description:</strong> {{description}}</p>
+      <p><strong>Status:</strong> {{status}}</p>
+      {{#if currentUser}}
+        <p><button class="btn btn-success btn-block btn-resolve">Resolve!</button></p>
+      {{/if}}
+    </li>
+  </div>
+  <div>
+    <h1 style="text-align: center">Comments:</h1>
+      {{#each comments}}
+        <div class="container ticket-list">
+          <h4>{{author}}</h4>
+          <p>{{{body}}}</p>
+        </div>
+        <br />
+      {{/each}}
+    {{#if currentUser}}
+      <form class="container ticket-list">
+        <input type="text" id="commentbody" style="width: 100%;" placeholder="Add comment..." />
+      </form>
+      <br />
+    {{/if}}
   </div>
 </template>
