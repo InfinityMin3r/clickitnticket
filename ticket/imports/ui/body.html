@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 <body>
 
 </body>
 
 <template name="homepage">
-	<div class="container">
-		<h1 class="text-center">HOMEPAGE</h1>
-	</div>
+  <div class="container">
+    <h1 class="text-center">HOMEPAGE</h1>
+  </div>
 </template>
 
 <template name="submit">
@@ -52,7 +53,9 @@
 
 <template name="admin">
   <div class="container">
-    <div class="text-center"><p>Hi, <span>{{> loginButtons}}</span></p></div>
+    <div class="text-center">
+      <p>Hi, <span>{{> loginButtons}}</span></p>
+    </div>
   </div>
 </template>
 
@@ -80,14 +83,14 @@
   <label class="h1"><span class="ticketnum">{{number}}</span>:<span class="tbtn"><em>toggle</em></span></label>
     <ul>
       <li>
-	<p><strong>Submitted For:</strong> {{rpiemail}}</p>
-	<p><strong>Submitted By:</strong> {{youremail}}</p>
-	<p><strong>Issue Type:</strong> {{issuetype}}</p>
-	<p><strong>Priority:</strong> {{priority}}</p>
-	<p><strong>Description:</strong> {{description}}</p>
-	<p><strong>Status:</strong> {{status}}</p>
-	{{#if currentUser}}
-	  <p><button class="btn btn-success btn-block btn-resolve">Resolve!</button></p>
+        <p><strong>Submitted For:</strong> {{rpiemail}}</p>
+        <p><strong>Submitted By:</strong> {{youremail}}</p>
+        <p><strong>Issue Type:</strong> {{issuetype}}</p>
+        <p><strong>Priority:</strong> {{priority}}</p>
+        <p><strong>Description:</strong> {{description}}</p>
+        <p><strong>Status:</strong> {{status}}</p>
+        {{#if currentUser}}
+          <p><button class="btn btn-success btn-block btn-resolve">Resolve!</button></p>
         {{/if}}
       </li>
     </ul>
