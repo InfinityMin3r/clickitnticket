@@ -30,7 +30,9 @@ as is the resolve button and comment add field.
         {{/if}}
       </p>
       {{#if currentUser}}
-        <p><button class="btn btn-success btn-block btn-resolve">Resolve!</button></p>
+        {{#if status}}
+          <p><button class="btn btn-success btn-block btn-resolve">Resolve!</button></p>
+        {{/if}}
       {{/if}}
     </li>
   </div>

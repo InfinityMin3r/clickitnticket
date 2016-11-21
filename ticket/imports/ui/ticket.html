@@ -17,7 +17,9 @@
         </p>
         {{#if currentUser}}
           <p><button class="btn btn-primary btn-block btn-open">View Ticket</button></p>
-          <p><button class="btn btn-success btn-block btn-resolve">Resolve!</button></p>
+          {{#if status}}
+            <p><button class="btn btn-success btn-block btn-resolve">Resolve!</button></p>
+          {{/if}}
         {{/if}}
       </li>
     </ul>
