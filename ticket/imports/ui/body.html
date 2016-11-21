@@ -71,7 +71,7 @@
 <template name="ticket">
 <br>
 <div class="container ticket-list">
-  <label class="h1">{{number}}: <span class="tbtn"><em>toggle</em></span></label>
+  <label class="h1"><span class="ticketnum">{{number}}</span>:<span class="tbtn"><em>toggle</em></span></label>
     <ul>
       <li>
 	<p><strong>Submitted For:</strong> {{rpiemail}}</p>
@@ -81,7 +81,7 @@
 	<p><strong>Description:</strong> {{description}}</p>
 	<p><strong>Status:</strong> {{status}}</p>
 	{{#if currentUser}}
-	  <p><button class="btn btn-success btn-block">Resolve!</button></p>
+	  <p><button class="btn btn-success btn-block btn-resolve">Resolve!</button></p>
         {{/if}}
       </li>
     </ul>

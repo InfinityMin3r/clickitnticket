@@ -79,6 +79,13 @@ Template.ticketview.events({
     .find('ul')
     .toggle();
   },
+	'click .btn-resolve': function (event){
+			const target = event.target;
+			const numtofind = parseInt( $(target).parent().parent().parent().parent().find('.ticketnum').text() );
+			var doc = Tickets.findOne( { number: numtofind } );  //change me
+			Tickets.update( { _id: doc._id }, {$set: {status: "resolved"} } );
+			console.log(Tickets.findOne( { number: numtofind } ).status);
+   } 
 });
 
 Template.submit.onCreated(function submitOnCreated() {
