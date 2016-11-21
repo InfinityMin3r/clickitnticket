@@ -27,7 +27,11 @@ function badform() {
   });
 }
 
-Router.route('/', function () {
+Router.route('/', function() {
+		this.render('homepage');
+});
+
+Router.route('/home', function () {
   this.render('ticketview');
 });
 
@@ -154,6 +158,6 @@ Template.submit.events({
       createdAt: new Date(),
     });
 
-    Router.go('/');
+    Router.go('/home');
   },
 });
