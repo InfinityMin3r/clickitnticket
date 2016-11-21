@@ -1,13 +1,20 @@
+<!--
+This page allows an authenticated viewer to create a ticket.
+-->
+
 <template name="submit">
   <div class="container ticket-box">
     <form>
+      <!-- Section for page title -->
       <div class="form-group">
         <h3 class="text-center head-text">Ticket Submission:</h3>
       </div>
+      <!-- Section for reportees email address -->
       <div class="form-group">
-        <label for="rpiemailinput">RPI Email</label>
+        <label for="rpiemailinput">Contact Email</label>
         <input type="email" class="form-control" id="rpiemailin" placeholder="email@rpi.edu" />
       </div>
+      <!-- Section for issue type selection -->
       <div class="form-group">
         <label for="issuetype">Issue Type</label>
         <select class="form-control" id="issuetype">
@@ -16,10 +23,12 @@
           <option value="printer">Printer</option>
         </select>
       </div>
+      <!-- Section for issue description -->
       <div class="form-group">
         <label for="description">Please Describe Issue:</label>
         <textarea class="form-control" name="description" id="description"></textarea>
       </div>
+      <!-- Section for priority selection -->
       <div class="form-group">
         <label for="priorityselect">Select Priority</label>
         <br />
