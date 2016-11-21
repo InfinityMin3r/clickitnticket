@@ -255,7 +255,7 @@ Template.submit.events({
       number = 2760001;
     } else number = number.number + 1;
     // Check if all fields complete, do not submit if missing information
-    if (description === '' || priority === '' || youremail === '' || rpiemail === '' || issuetype === '') {
+    if (namein === '' || rpiemail === '' || phonein === '' || description === '' || priority === '' || youremail === '' || rpiemail === '' || issuetype === '' || summary === '') {
       badform();
       return false;
     }
