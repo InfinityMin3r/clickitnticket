@@ -8,18 +8,23 @@
   <br />
   <!-- This section displays the info for the ticket -->
   <div class="container ticket-list">
-    <label><h1><span id="ticketnum">{{number}}</span></h1></label>
+    <label><h1><span id="ticketnum">{{number}}<br /><h3>{{summary}}</h3></span></h1></label>
     <li>
-      <p><strong>Created at:</strong> {{createdAt}}</p>
-      <p><strong>Reported by:</strong> {{rpiemail}}</p>
-      {{#if currentUser}}
-        <p><strong>Submitted By:</strong> {{youremail}}</p>
+      <p><strong>Created at: </strong>{{createdAt}}</p>
+      <p><strong>Reported by: </strong>{{namein}}</p>
+      <p><strong>Contact Email: </strong>{{rpiemail}}</p>
+      {{#if altemail}}
+      <p><strong>Alternate Email: </strong>{{altemail}}</p>
       {{/if}}
-      <p><strong>Issue Type:</strong> {{issuetype}}</p>
+      <p><strong>Contact Phone: </strong>{{phonein}}</p>
       {{#if currentUser}}
-        <p><strong>Priority:</strong> {{priority}}</p>
+        <p><strong>Submitted By: </strong>{{youremail}}</p>
       {{/if}}
-      <p><strong>Description:</strong> {{description}}</p>
+      <p><strong>Issue Type: </strong>{{issuetype}}</p>
+      {{#if currentUser}}
+        <p><strong>Priority: </strong>{{priority}}</p>
+      {{/if}}
+      <p><strong>Description: </strong>{{description}}</p>
       <p><strong>Status: </strong> 
         {{#if status}}
           New Ticket
