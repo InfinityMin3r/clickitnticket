@@ -174,32 +174,11 @@ Template.submit.helpers({
 });
 
 Template.submit.events({
-  'click .pri-btn': function (event) {
-    event.preventDefault();
-    const target = event.target;
-    const val = target.innerHTML;
-    if (val === 'Priority A') {
-      Template.instance().prioritysel.set('A');
-      Template.instance().priorityclass.set('btn-danger');
-    } else if (val === 'Priority B') {
-      Template.instance().prioritysel.set('B');
-      Template.instance().priorityclass.set('btn-warning');
-    } else if (val === 'Priority C') {
-      Template.instance().prioritysel.set('C');
-      Template.instance().priorityclass.set('btn-primary');
-    } else if (val === 'Priority D') {
-      Template.instance().prioritysel.set('D');
-      Template.instance().priorityclass.set('btn-info');
-    }
-  },
-  'click #finalpriority': function (event) {
-    event.preventDefault();
-  },
   'click #submit-btn'(event) {
     event.preventDefault();
     const target = event.target.parentElement;
     const description = target.description.value;
-    const priority = target.finalpriority.innerHTML;
+    const priority = target.priority.value;
     const youremail = Meteor.user().emails[0].address;
     const rpiemail = target.rpiemailin.value;
     const issuetype = target.issuetype.value;

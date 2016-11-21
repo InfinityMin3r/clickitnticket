@@ -26,25 +26,21 @@ This page allows an authenticated viewer to create a ticket.
           <option value="printer">Printer</option>
         </select>
       </div>
+			<div class="form-group">
+				<label for="priority">Priority</label>
+				<select class="form-control" id="priority">
+					<option value="Priority A">Priority A</option>
+					<option value="Priority B">Priority B</option>
+					<option value="Priority C">Priority C</option>
+					<option value="Priority D" selected>Priority D</option>
+				</select>
+			</div>
       <!-- Section for issue description -->
       <div class="form-group">
         <label for="description">Please Describe Issue:</label>
         <textarea class="form-control" name="description" id="description"></textarea>
       </div>
       <!-- Section for priority selection -->
-      <div class="form-group">
-        <label for="priorityselect">Select Priority</label>
-        <br />
-        <button class="pri-btn btn btn-danger">Priority A</button>
-        <span>|</span>
-        <button class="pri-btn btn btn-warning">Priority B</button>
-        <span>|</span>
-        <button class="pri-btn btn btn-primary">Priority C</button>
-        <span>|</span>
-        <button class="pri-btn btn btn-info">Priority D</button>
-        <span>||</span>
-        <button class="btn {{priorityclass}} disabled" id="finalpriority">Priority {{prioritysel}}</button>
-      </div>
       <button class="btn btn-primary btn-block" id="submit-btn">Submit</button>
     </form>
   </div>
