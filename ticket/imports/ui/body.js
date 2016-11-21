@@ -165,6 +165,6 @@ Template.submit.events({
       createdAt: new Date(),
     });
 
-    Router.go('/home');
+    Router.go('/view');
   },
 });
