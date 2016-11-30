@@ -1,0 +1,70 @@
+<!-- This page allows an authenticated viewer to create a ticket. -->
+
+<template name="submit">
+  {{#if currentUser}}
+    <a href="/view" class="btn btn-info" style="margin-bottom: 10px" >Return to Ticket List</a>
+    <button class="btn btn-info" id="logout" style="margin-bottom: 10px" >Log Out</button>
+  {{/if}}
+  <div class="container ticket-box">
+    <form>
+
+      <!-- Section for page title -->
+      <div class="form-group">
+        <h3 class="text-center head-text">Ticket Submission:</h3>
+      </div>
+
+      <!-- Section for reportees information -->
+      <div class="form-group">
+        <label for="nameinput"><span class="asteric">*</span> Name</label>
+        <input type="name" class="form-control" id="namein" placeholder="John Doe" />
+      </div>
+      <div class="form-group">
+        <label for="rpiemailinput"><span class="asteric">*</span> Contact Email</label>
+        <input type="email" class="form-control" id="rpiemailin" placeholder="email@rpi.edu" />
+      </div>
+      <div class="form-group">
+        <label for="altemailinput">Alternate Email</label>
+        <input type="email" class="form-control" id="altemailin" placeholder="email@example.com" />
+      </div>
+      <div class="form-group">
+        <label for="phoneinput"><span class="asteric">*</span> Contact Phone</label>
+        <input type="phone" class="form-control" id="phonein" placeholder="(###) ###-####" />
+      </div>
+
+      <!-- Section for issue type selection -->
+      <div class="form-group">
+        <label for="issuetype"><span class="asteric">*</span> Issue Type</label>
+        <select class="form-control" id="issuetype">
+          <option value="network" selected>Networking</option>
+          <option value="phone">Phone</option>
+          <option value="printer">Printer</option>
+          <option value="printer">Other</option>
+        </select>
+      </div>
+
+      <!-- Section for priority selection -->
+			<div class="form-group">
+				<label for="priority"><span class="asteric">*</span> Priority</label>
+				<select class="form-control" id="priority">
+					<option value="Priority A">Priority A</option>
+					<option value="Priority B">Priority B</option>
+					<option value="Priority C">Priority C</option>
+					<option value="Priority D" selected>Priority D</option>
+				</select>
+			</div>
+
+      <!-- Section for issue description -->
+      <div class="form-group">
+        <label for="summary"><span class="asteric">*</span> Issue Summary:</label>
+        <input type="text" class="form-control" name="summary" id="summary" />
+      </div>
+      <div class="form-group">
+        <label for="description"><span class="asteric">*</span> Please Describe Issue:</label>
+        <textarea class="form-control" name="description" id="description"></textarea>
+      </div>
+
+      <!-- Submit button -->
+      <button class="btn btn-primary btn-block" id="submit-btn">Submit</button>
+    </form>
+  </div>
+</template>
