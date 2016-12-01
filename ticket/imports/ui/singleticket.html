@@ -34,7 +34,9 @@
       </p>
       {{#if currentUser}}
         {{#if status}}
-          <p><button class="btn btn-success btn-block btn-resolve">Resolve!</button></p>
+          <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
+        {{else}}
+          <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
         {{/if}}
       {{/if}}
     </li>

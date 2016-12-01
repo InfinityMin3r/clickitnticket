@@ -202,6 +202,16 @@ Template.ticketview.events({
     const ticket = Tickets.findOne({ number: numtofind });
     Tickets.update({ _id: ticket._id }, { $set: { status: false } });
   },
+  'click .btn-reopen': function (event) { // Event for resolve ticket button.  Changes ticket status to resolve.
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($(target).parent().parent().parent()
+      .parent()
+      .find('.ticketnum')
+      .text(), 10);
+    const ticket = Tickets.findOne({ number: numtofind });
+    Tickets.update({ _id: ticket._id }, { $set: { status: true } });
+  },
 });
 
 // Events for single ticket
@@ -213,6 +223,14 @@ Template.singleticket.events({
     const numtofind = parseInt($('#ticketnum').text(), 10);
     const ticket = Tickets.findOne({ number: numtofind });
     Tickets.update({ _id: ticket._id }, { $set: { status: false } });
+  },
+  'click .btn-reopen': function (event) { // Event for resolve ticket button.  Changes ticket status to resolve.
+    event.preventDefault();
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($('#ticketnum').text(), 10);
+    const ticket = Tickets.findOne({ number: numtofind });
+    Tickets.update({ _id: ticket._id }, { $set: { status: true } });
   },
   'submit form': function (event) { // Event for ticket commenting.  Logs current username and adds new ticket.
     event.preventDefault();
