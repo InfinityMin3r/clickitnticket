@@ -186,7 +186,7 @@ Template.ticketview.events({
   },
   'click .btn-open': function (event) { // Event for open ticket button.  Loads current ticket on single page.
     const target = event.target;
-    const numtofind = $(target).parent().parent().parent()
+    const numtofind = $(target).parent().parent()
     .parent()
     .find('.ticketnum')
     .text();
@@ -195,7 +195,7 @@ Template.ticketview.events({
   'click .btn-resolve': function (event) { // Event for resolve ticket button.  Changes ticket status to resolve.
     const target = event.target;
     $(target).toggle();
-    const numtofind = parseInt($(target).parent().parent().parent()
+    const numtofind = parseInt($(target).parent().parent()
       .parent()
       .find('.ticketnum')
       .text(), 10);
@@ -212,12 +212,12 @@ Template.ticketview.events({
       arrnew.push({ author, body, time });
     }
     Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } });
-    Tickets.update({ _id: ticket._id }, { $set: { status: false } });
+		Tickets.update({ _id: ticket._id }, { $set: { status: false } })
   },
   'click .btn-reopen': function (event) { // Event for resolve ticket button.  Changes ticket status to resolve.
     const target = event.target;
     $(target).toggle();
-    const numtofind = parseInt($(target).parent().parent().parent()
+    const numtofind = parseInt($(target).parent().parent()
       .parent()
       .find('.ticketnum')
       .text(), 10);
