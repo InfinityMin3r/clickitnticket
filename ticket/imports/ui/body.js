@@ -212,7 +212,7 @@ Template.ticketview.events({
       arrnew.push({ author, body, time });
     }
     Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } });
-		Tickets.update({ _id: ticket._id }, { $set: { status: false } })
+    Tickets.update({ _id: ticket._id }, { $set: { status: false } });
   },
   'click .btn-reopen': function (event) { // Event for resolve ticket button.  Changes ticket status to resolve.
     const target = event.target;
