@@ -186,7 +186,7 @@ Template.ticketview.events({
   },
   'click .btn-open': function (event) { // Event for open ticket button.  Loads current ticket on single page.
     const target = event.target;
-    const numtofind = $(target).parent().parent().parent()
+    const numtofind = $(target).parent().parent()
     .parent()
     .find('.ticketnum')
     .text();
@@ -195,12 +195,46 @@ Template.ticketview.events({
   'click .btn-resolve': function (event) { // Event for resolve ticket button.  Changes ticket status to resolve.
     const target = event.target;
     $(target).toggle();
-    const numtofind = parseInt($(target).parent().parent().parent()
+    const numtofind = parseInt($(target).parent().parent()
       .parent()
       .find('.ticketnum')
       .text(), 10);
     const ticket = Tickets.findOne({ number: numtofind });
+    const author = 'System';
+    const time = new Date();
+    const body = 'Ticket resolved by ' + Meteor.user().emails[0].address;
+    const arro = ticket.comments;
+    let arrnew = [{}];
+    if (typeof (arro) === 'undefined') {
+      arrnew = [{ author, body, time }];
+    } else {
+      arrnew = arro;
+      arrnew.push({ author, body, time });
+    }
+    Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } });
     Tickets.update({ _id: ticket._id }, { $set: { status: false } });
+  },
+  'click .btn-reopen': function (event) { // Event for resolve ticket button.  Changes ticket status to resolve.
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($(target).parent().parent()
+      .parent()
+      .find('.ticketnum')
+      .text(), 10);
+    const ticket = Tickets.findOne({ number: numtofind });
+    const author = 'System';
+    const time = new Date();
+    const body = 'Ticket reopened by ' + Meteor.user().emails[0].address;
+    const arro = ticket.comments;
+    let arrnew = [{}];
+    if (typeof (arro) === 'undefined') {
+      arrnew = [{ author, body, time }];
+    } else {
+      arrnew = arro;
+      arrnew.push({ author, body, time });
+    }
+    Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } });
+    Tickets.update({ _id: ticket._id }, { $set: { status: true } });
   },
 });
 
@@ -212,22 +246,55 @@ Template.singleticket.events({
     $(target).toggle();
     const numtofind = parseInt($('#ticketnum').text(), 10);
     const ticket = Tickets.findOne({ number: numtofind });
+    const author = 'System';
+    const time = new Date();
+    const body = 'Ticket resolved by ' + Meteor.user().emails[0].address;
+    const arro = ticket.comments;
+    let arrnew = [{}];
+    if (typeof (arro) === 'undefined') {
+      arrnew = [{ author, body, time }];
+    } else {
+      arrnew = arro;
+      arrnew.push({ author, body, time });
+    }
+    Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } });
     Tickets.update({ _id: ticket._id }, { $set: { status: false } });
   },
-  'submit form': function (event) { // Event for ticket commenting.  Logs current username and adds new ticket.
+  'click .btn-reopen': function (event) { // Event for resolve ticket button.  Changes ticket status to resolve.
+    event.preventDefault();
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($('#ticketnum').text(), 10);
+    const ticket = Tickets.findOne({ number: numtofind });
+    const author = 'System';
+    const time = new Date();
+    const body = 'Ticket reopened by ' + Meteor.user().emails[0].address;
+    const arro = ticket.comments;
+    let arrnew = [{}];
+    if (typeof (arro) === 'undefined') {
+      arrnew = [{ author, body, time }];
+    } else {
+      arrnew = arro;
+      arrnew.push({ author, body, time });
+    }
+    Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } });
+    Tickets.update({ _id: ticket._id }, { $set: { status: true } });
+  },
+  'submit form': function (event) { // Event for ticket commenting.  Logs current username and adds new comment.
     event.preventDefault();
     const target = event.target;
     const numtofind = parseInt($('#ticketnum').text(), 10);
     const author = Meteor.user().emails[0].address;
+    const time = new Date();
     const body = target.commentbody.value;
     const ticket = Tickets.findOne({ number: numtofind }); // get the actual ticket
     const arro = ticket.comments;
     let arrnew = [{}];
     if (typeof (arro) === 'undefined') {
-      arrnew = [{ author, body }];
+      arrnew = [{ author, body, time }];
     } else {
       arrnew = arro;
-      arrnew.push({ author, body });
+      arrnew.push({ author, body, time });
     }
     Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } });
     target.commentbody.value = '';
