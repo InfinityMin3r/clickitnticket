@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Ticket System</title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+  
+		<link rel="stylesheet" href="css/main.css?v0.7">
+	</head>
+  <body>
+		<div id="headers">
+			<nav class="navbar navbar-inverse">
+			  <div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="navbar-collapse">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+							<li><a href="#install">Install</a></li>
+							<li><a href="#content">About</a></li>
+						</ul>
+					</div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
+			<div id="downloadheader" class="container-fluid">
+				<div id="downloadcontent">
+					<a href="#install" class="installbtn">Install Now</a>
+				</div>
+			</div>
+		</div>
+		<div id="install" class="container-fluid">
+			<nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-\
+collapse" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Home</a></li>
+              <li class="active"><a href="#install">Install <span class="sr-only">(current)</span></a></li>
+              <li><a href="#content">About</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+			<div id="instructions">
+				<h1>Install Click-it-n-ticket (General Release 0.1)</h1>
+				<div id="automatic">
+					<p>The automatic method:<br><kbd>curl https://clickitn.tk/install/ | sh</kbd></p>
+				</div>
+				<div id="manual">
+					<p style="text-center">If auto installation fails, try these installation directions:</p>
+					<ol>
+						<li>Download Node:<br><kbd>curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -</kbd></li>
+						<li>Install Node:<br><kbd>sudo apt-get install -y nodejs</kbd></li>
+						<li>Install Meteor:<br><kbd>curl https://install.meteor.com/ | sh</kbd></li>
+						<li>Install npm:<br><kbd>sudo npm install -g npm</kbd></li>
+						<li>Install bcrypt:<br><kbd>sudo apt-get install -y node-gyp</kbd></li>
+						<li>Download our latest release (GR 0.1):<br><kbd>wget https://install.clickitnticket.ml/tickets.zip</kbd></li>
+						<li>Create Meteor Directory (non-root):<br><kbd>meteor create ticket</kbd></li>
+						<li>Extract <kbd>tickets.zip</kbd> to new directory:<br>
+							<ol>
+								<li><kbd>mv tickets.zip ticket/</kbd></li>
+								<li><kbd>cd ticket</kbd></li>
+								<li><kbd>unzip tickets.zip</kbd></li>
+								<li><kbd>rm tickets.zip</kbd>
+							</ol>
+						</li>
+						<li>From our new directory:<br><kbd>meteor npm install</kbd></li>
+						<li>Run Meteor:</br><kbd>meteor &</kbd></li>
+					</ol>
+					<p>Assuming you got no errors, the system is now running at http://yourhost:3000</p>
+					<h2>Enjoy!</h2>
+				</div>
+			</div>
+		</div>
+		<div id="content" class="container-fluid">
+			<nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-\
+collapse" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="#install">Install <span class="sr-only">(current)</span></a></li>
+              <li class="active"><a href="#content">About</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+			<div class="row" id="content-nonnav">
+				<div id="main" class="col-xs-12 col-md-8">
+					<h1 class="text-center">So what is this, exactly?</h1>
+					<p class="text-center">Click-it-n-ticket is a state-of-the-art, modern ticketing system.</p>
+					<h2>Instantaneous</h2>
+					<p>Click-it-n-ticket is <strong>instantaneous</strong> &mdash; things appear as they're created, rather than needing a refresh!</p>
+					<h2>Hot Code Reload</h2>
+					<p>Updates to the software no longer require a manual reload; all connected browsers will reload and display that new great feature!</p>
+					<h2>Modern</h2>
+					<p>Our software uses responsive design and modern technologies to provide an overall beautiful experience!</p>
+					<div id="screenshots">
+
+					</div>
+					<h2>Open Source</h2>
+					<p>Our project is open source and uploaded to <a href="#">Github</a>!
+				</div>
+				<div id="sidebar" class="col-xs-12 col-md-4">
+					<div id="donors" class="sidebox">
+						<p class="text-center">List of Donors:</p>
+						<p class="text-center vert-centered"><strong>None</strong></p>
+					</div>
+					<div id="donate" class="sidebox">
+						<p class="text-center">How to Donate:</p>
+						<p> $1: Name in the Donors Section </p>
+						<p> $10: Request a Feature! </p>
+						<p> NOTE: We ARE NOT accepting donations at this time.</p>
+					</div>
+					<div id="about" class="sidebox">
+						<p class="text-center">Developers:</p>
+						<p>Joshua Rosenfeld</p>
+						<p>Maxwell Schmitt</p>
+						<p>Avinash Singh</p>
+						<p>Eric Tsui</p>
+					</div>
+					<div id="attributions" class="sidebox">
+						<p class="text-center">We would like to thank:</p>
+						<div class="row">
+							<div class="col-xs-6 col-sm-4">
+								<p><a href="https://sites.google.com/site/rpisdd/">John Sturman</a></p>
+								<p><a href="https://www.flickr.com/photos/scotbot/9686457096/in/pool-creative_commons-_free_pictures/">Scott Wylie</a></p>
+								<p><a href="https://www.flickr.com/photos/nickrussill/150410498/in/pool-creative_commons-_free_pictures/">Nick Russill</a></p>
+								<p><a href="http://dotcio.rpi.edu/support/helpdesk">VCC Helpdesk</a></p>
+							</div>
+							<div class="col-xs-6 col-sm-4">
+								<p><a href="https://commons.wikimedia.org/wiki/File:Free_space_fantasy_universe_time_warp_pulsar_texture_for_layers_(3074561039).jpg">Pink Sherbert</a></p>
+								<p><a href="https://subtlepatterns.com/weather/">Aslan Zamanloo</a></p>
+								<p><a href="https://www.meteor.com/">Meteor JS</a></p>
+								<p><a href="https://github.com/CodeSeven/toastr">ToastrJS</a></p>
+							</div>
+							<div class="col-xs-6 col-sm-4">
+								<p><a href="https://gitlab.com">Gitlab</a></p>
+								<p><a href="https://slack.com/">Slack</a></p>
+								<p><a href="https://drive.google.com">Google Drive</a></p>
+								<p><a href="https://getbootstrap.com">Bootstrap</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="footer">
+					<p>Click-it-n-ticket is a capstone project for <a href="https://sites.google.com/site/rpisdd/">Software Design and Documentation</a> at <a href="https://rpi.edu">Rensselaer Polytechnic Institute</a>.</p>
+					<p>It was taught by the wonderful professor John Sturman, to whom we owe a debt of gratitude.</p>
+				</div>
+			</div>
+		</div>
+  </body>
+</html>
