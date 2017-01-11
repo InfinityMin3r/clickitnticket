@@ -1,0 +1,20 @@
+<!-- This template is responsible for displaying options to log in, and give the option to look up tickets -->
+
+<template name="homepage">
+  <div class="homepage wrapper" style="text-align: center">
+    <p class="title">Click it 'n' Ticket</p>
+    <p class="lead">To review the status of an existing ticket, enter your seven digit ticket number below:</p>
+    <form>
+     	<div class="form-group">
+        <input type="text" class="ticket-search form-control" id="yourticketinput" placeholder="Ticket Number" />
+      </div>
+			<div class="form-group">
+				<button class="btn btn-info ticket-search form-control" id="submitbutton">View Ticket!</button>
+      </div>
+    </form>
+    <div class="push"></div>
+  </div>
+  <div class="footer" style="text-align: center">
+    <p class="btn btn-primary" id='btn-login' role="button">User Login</p>
+  </div>
+</template>

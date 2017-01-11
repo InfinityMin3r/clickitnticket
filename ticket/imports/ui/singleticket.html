@@ -1,0 +1,67 @@
+<!-- This page displays a single ticket and comments.  Certain fields are restricted to authenticated viewers, as is the resolve button and comment add field. -->
+
+<template name="singleticket">
+  {{#if currentUser}}
+    <a href="/view" class="btn btn-info" style="margin-bottom: 10px" >Return to Ticket List</a>
+    <button class="btn btn-info" id="logout" style="margin-bottom: 10px" >Log Out</button>
+  {{/if}}
+  <br />
+  <!-- This section displays the info for the ticket -->
+  <div class="container ticket-list">
+    <label><h1><span id="ticketnum">{{number}}<br /><h3>{{summary}}</h3></span></h1></label>
+    <li>
+      <p><strong>Created at: </strong>{{createdAt}}</p>
+      <p><strong>Reported by: </strong>{{namein}}</p>
+      <p><strong>Contact Email: </strong>{{rpiemail}}</p>
+      {{#if altemail}}
+      <p><strong>Alternate Email: </strong>{{altemail}}</p>
+      {{/if}}
+      <p><strong>Contact Phone: </strong>{{phonein}}</p>
+      {{#if currentUser}}
+        <p><strong>Submitted By: </strong>{{youremail}}</p>
+      {{/if}}
+      <p><strong>Issue Type: </strong>{{issuetype}}</p>
+      {{#if currentUser}}
+        <p><strong>Priority: </strong>{{priority}}</p>
+      {{/if}}
+      <p><strong>Description: </strong>{{description}}</p>
+      <p><strong>Status: </strong> 
+        {{#if status}}
+          New Ticket
+        {{else}}
+          Resolved
+        {{/if}}
+      </p>
+      {{#if currentUser}}
+        {{#if status}}
+          <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
+        {{else}}
+          <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
+        {{/if}}
+      {{/if}}
+    </li>
+  </div>
+
+  <!-- This section displays each existing comment and the add comment field for authenticated viewers -->
+  <div>
+    <h1 style="text-align: center">Comments:</h1>
+    {{#each comments}}
+      <div class="container ticket-list">
+        <h4>{{author}}</h4>
+        <p><em>{{time}}</em></p>
+        <p>{{{body}}}</p>
+      </div>
+      <br />
+    {{/each}}
+    {{#if currentUser}}
+      <form class="container ticket-list">
+        {{#if status}}
+          <input type="text" id="commentbody" style="width: 100%;" placeholder="Add comment..." />
+        {{else}}
+          <p style="width: 100%; margin-bottom: 0px"><em>Ticket is resolved, commenting disabled.</em></p>
+        {{/if}}
+      </form>
+      <br />
+    {{/if}}
+  </div>
+</template>

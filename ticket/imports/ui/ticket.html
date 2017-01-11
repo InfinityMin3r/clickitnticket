@@ -1,0 +1,29 @@
+<!-- This template is reponsible for displaying an individual tickets information -->
+
+<template name="ticket">
+<br>
+<div class="container ticket-list">
+  <label class="h1"><span class="ticketnum">{{number}}</span>:   <span class="tbtn"><em>toggle</em></span></label>  
+    <ul>
+      <p><strong>Issue Type: </strong>{{issuetype}}</p>
+      <p><strong>Priority: </strong>{{priority}}</p>
+      <p><strong>Summary: </strong>{{summary}}</p>
+      <p><strong>Status: </strong>
+        {{#if status}}
+          New Ticket
+        {{else}}
+          Resolved
+        {{/if}}
+      </p>
+      {{#if currentUser}}
+        <p><button class="btn btn-primary btn-block btn-open">View Ticket</button></p>
+        {{#if status}}
+          <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
+        {{else}}
+          <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
+        {{/if}}
+      {{/if}}
+    </ul>
+  </div>
+  <br>
+</template>

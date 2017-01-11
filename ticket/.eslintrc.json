@@ -1,0 +1,27 @@
+{
+    "settings": {
+        "import/resolver": "meteor"
+    },
+    "extends": "airbnb",
+    
+    "rules": {
+    	"no-undef": "off",
+        "no-underscore-dangle": "off",
+        "prefer-arrow-callback": "off",
+        "prefer-template": "off",
+        "consistent-return": "off",
+        "no-unused-expressions": "off",
+    	"func-names": "off",
+    	"object-shorthand": "off",
+        "import/extensions": [
+            "off", "never"
+        ],
+        "import/prefer-default-export" : "off"
+    },
+    "installedESLint": true,
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import"
+    ]
+}
