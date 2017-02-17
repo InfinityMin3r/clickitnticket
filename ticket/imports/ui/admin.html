@@ -1,8 +1,16 @@
-<!-- This template greets the authenticated user on login, currently not in use -->
 <template name="admin">
-  <div class="container">
-    <div class="text-center">
-      <p>Hi, <span>{{> loginButtons}}</span></p>
-    </div>
-  </div>
+
+  {{#if isInRole 'Admin'}}
+    <p> Hi </p>
+    <label><a href="/admin/users">Users</a></label>
+  {{else}}
+    <p> Go away </p>
+    <label><a href="../view">View Ticket</a></label>
+  {{/if}}
+
+
+
+
+
+
 </template>

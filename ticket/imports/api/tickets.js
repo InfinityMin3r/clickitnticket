@@ -72,3 +72,22 @@ Meteor.methods({
     }
   },
 });
+
+
+Meteor.methods({
+  edit(id,roles){
+    roleArr = Roles.getRolesForUser(id);
+
+    if (roleArr.length) {
+      for (i = 0; i < roleArr.length; ++i) {
+        Roles.removeUsersFromRoles(id,roleArr[i]);
+      }
+    }
+    if(!Roles.userIsInRole(id,roles)) {
+      Roles.addUsersToRoles(id,roles);
+    } else {
+      Roles.removeUsersFromRoles(id,roles);
+    }  
+  }, 
+
+});

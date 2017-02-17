@@ -11,6 +11,8 @@ import './ticket.html';
 import './ticketview.html';
 import './login.html';
 import './404.html';
+import './users.html';
+
 
 // Non-blocking alert for bad user-input
 function badform() {
@@ -109,6 +111,14 @@ Router.route('/view/:ticket', {
   },
 });
 
+
+
+Router.route('/admin/users', function () {
+  if (Meteor.userId()) {
+    this.render('users');
+  } else this.render('ticketview');
+});
+
 // Functions for logout.
 
 // Redirects user to homepage after logout.
@@ -183,6 +193,10 @@ Template.ticketview.helpers({
 
 // Events for ticket list
 Template.ticketview.events({
+  'click #adminbutton': function (event) { // Event for login button.  Call ticket list route
+    event.preventDefault();
+    Router.go('/admin');
+  },
   'click .ticket-list .tbtn': function (event) { // Event for ticket toggle button, expands current ticket.
     const target = event.target;
     $(target).parent().parent().parent()
@@ -291,3 +305,47 @@ Template.submit.events({
     Router.go('/view');
   },
 });
+
+Template.users.events({
+  'click .userId': function () {
+      Session.set('allusers',this);
+  },
+  'click .setAdmin':function() {
+    Meteor.call('edit',this._id,'Admin');
+  },
+  'click .setTech':function() {
+    Meteor.call('edit',this._id,'Technician');
+  },
+  'click .setDesk':function() {
+    Meteor.call('edit',this._id,'Help Desk');
+  },
+  'click .setNormal':function() {
+    Meteor.call('edit',this._id,'Normal User');
+  },
+
+});
+
+
+Meteor.subscribe("directory");
+
+Template.users.helpers({
+  email: function(){
+  return this.emails[0].address; 
+ },
+ allusers:function(){
+  return Meteor.users.find({});
+ },
+ role: function(){
+  if (Roles.userIsInRole(this, ['Admin']))
+    return "Administrator";
+  else if (Roles.userIsInRole(this, ['Technician']))
+    return "Technician";
+  else if (Roles.userIsInRole(this,['Help Desk']))
+    return "Consultant";
+  else 
+    return "Normal User";
+  },
+});
+
+
+
