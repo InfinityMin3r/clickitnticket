@@ -71,4 +71,23 @@ Meteor.methods({
       Tickets.update({ _id: ticket._id }, { $set: { status: false } }); //set status to resolved
     }
   },
+  edit(id,roles){
+ 
+    //methods that helps allow the administrator to assign roles to the users. 
+    //maybe need a new file to handle all the functions 
+
+    roleArr = Roles.getRolesForUser(id);
+
+    if (roleArr.length) {
+      for (i = 0; i < roleArr.length; ++i) {
+        Roles.removeUsersFromRoles(id,roleArr[i]);
+      }
+    }
+
+    if(!Roles.userIsInRole(id,roles)) {
+      Roles.addUsersToRoles(id,roles);
+    } else {
+      Roles.removeUsersFromRoles(id,roles);
+    }  
+  }, 
 });

@@ -11,6 +11,7 @@ import './ticket.html';
 import './ticketview.html';
 import './login.html';
 import './404.html';
+import './users.html';
 
 // Non-blocking alert for bad user-input
 function badform() {
@@ -109,6 +110,12 @@ Router.route('/view/:ticket', {
   },
 });
 
+
+Router.route('/admin/users', function () {
+  if (Meteor.userId()) {
+    this.render('users');
+  } else this.render('ticketview');
+});
 // Functions for logout.
 
 // Redirects user to homepage after logout.
@@ -217,6 +224,10 @@ Template.ticketview.events({
     const body = 'Ticket reopened by ' + Meteor.user().emails[0].address;
     Meteor.call('tickets.resolve', numtofind, body, true);
   },
+  'click #adminbutton': function (event) { // Event for login button.  Call ticket list route
+    event.preventDefault();
+    Router.go('/admin');
+  },
 });
 
 // Events for single ticket
@@ -290,4 +301,40 @@ Template.submit.events({
     // Route user to ticket list
     Router.go('/view');
   },
+});
+
+//make user collection available to administrator
+Meteor.subscribe("directory");
+
+//help users to get email and users for user template
+Template.users.helpers({
+  email: function(){
+  return this.emails[0].address; 
+ },
+ allusers:function(){
+  return Meteor.users.find({});
+ },
+ role: function(){
+  if (Roles.userIsInRole(this, ['Admin']))
+    return "Administrator";
+  else if (Roles.userIsInRole(this, ['Technician']))
+    return "Technician";
+  else if (Roles.userIsInRole(this,['Help Desk']))
+    return "Help Desk Consultant";
+  else 
+    return "Normal User";
+  },
+});
+
+Template.users.events({
+  'click .userId': function () {
+      Session.set('allusers',this);
+  },
+  //dropdown selects will make change in role assignment
+  'change #setRoles':function() {
+    if (event.target.value != "") {
+      Meteor.call('edit',this._id, event.target.value);
+    }
+  },
+
 });

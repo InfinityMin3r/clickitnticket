@@ -4,6 +4,9 @@
   {{#if currentUser}}
     <button class="btn btn-info" id="logout" style="margin-bottom: 10px" >Log Out</button>
   {{/if}}
+  {{#if isInRole 'Admin'}}
+    <button class="btn btn-info" id = "adminbutton" style="margin-bottom: 10px"> Admin </button>
+  {{/if}}
   <ul>
     {{#each tickets}}
       {{> ticket}}
