@@ -251,7 +251,9 @@ Template.singleticket.events({
   'submit form': function (event) { // Event for ticket commenting.  Logs current username and adds new comment.
     event.preventDefault();
     const target = event.target;
+    console.log("first",$('#ticketnum').text());
     const numtofind = parseInt($('#ticketnum').text(), 10);
+    console.log("second",numtofind);
     const body = target.commentbody.value;
     const author = Meteor.user().emails[0].address;
     Meteor.call('tickets.comment', numtofind, body, author);
@@ -305,6 +307,9 @@ Template.submit.events({
 
 //make user collection available to administrator
 Meteor.subscribe("directory");
+
+//make the ticket list available to users 
+Meteor.subscribe("ticketslist");
 
 //help users to get email and users for user template
 Template.users.helpers({

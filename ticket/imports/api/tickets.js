@@ -5,6 +5,13 @@ import { Mongo } from 'meteor/mongo';
 
 export const Tickets = new Mongo.Collection('tickets');
 
+
+if (Meteor.isServer) {
+  Meteor.publish('ticketslist',function ticketPub() {
+    return Tickets.find();
+  });
+}
+
 Meteor.methods({
   'tickets.insert'( //secure method for insertion - take all fields from client
     namein,
@@ -40,7 +47,10 @@ Meteor.methods({
     });
   },
   'tickets.comment'(numtofind, body, author) {
+    // console.log("number is ",numtofind);
+    
     const ticket = Tickets.findOne({ number: numtofind }); // get the actual ticket
+    console.log("tickets is ", ticket);
     const arro = ticket.comments; //get the existing comments
     const time = new Date(); //current time
     let arrnew = [{}];
