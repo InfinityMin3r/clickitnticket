@@ -6,37 +6,52 @@
   <p> the email is <span> {{creatoremail}} </span> </p>
   <p> ticket creator is  <span> {{ticketemail}} </span> </p>
   <label class="h1"><span class="ticketnum"><p id="targetTicket">{{number}}</p></span>:   <span class="tbtn"><em>toggle</em></span></label>  
-    <ul>
-      <p><strong>Issue Type: </strong>{{issuetype}}</p>
-      <p><strong>Priority: </strong>{{priority}}</p>
-      <p><strong>Summary: </strong>{{summary}}</p>
-      <p><strong>Status: </strong>
-        {{#if status}}
-          New Ticket
-        {{else}}
-          Resolved
-        {{/if}}
-      </p>
-      {{#if currentUser}}
-        <p><button class="btn btn-primary btn-block btn-open">View Ticket</button></p>
-
-          {{#if isInRole "Help Desk"}}
-            {{#if creator}}
-              {{#if status}}
-                <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
-              {{else}}
-                <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
-              {{/if}}
-            {{/if}}
-          {{else}}  
-              {{#if status}}
-                <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
-              {{else}}
-                <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
-              {{/if}}          
-          {{/if}}
-      {{/if}}
-    </ul>
+	<ul>
+	  	<p><strong>Issue Type: </strong>{{issuetype}}</p>
+	  	<p><strong>Priority: </strong>{{priority}}</p>
+	  	<p><strong>Summary: </strong>{{summary}}</p>
+	  	<p><strong>Status: </strong>
+		{{#if status}}
+		 	New Ticket
+		{{else}}
+		  	Resolved
+		{{/if}}
+	  </p>
+	  	<p><strong>Close: </strong>
+		{{#if close}}
+		  	Yes
+		{{else}}
+		  	Not
+		{{/if}}
+	  </p>
+	  	{{#if currentUser}}
+			<p><button class="btn btn-primary btn-block btn-open">View Ticket</button></p>
+			{{#if close}}
+				{{#if isInRole "Admin"}}
+					<p><button class="btn btn-danger btn-block btn-notclose">Open</button></p>
+				{{/if}}
+		  	{{else}}
+		 		{{#if isInRole "Help Desk"}}
+					{{#if creator}}
+			  			{{#if status}}
+							<p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
+			  			{{else}}
+							<p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
+			  			{{/if}}
+					{{/if}}
+		  		{{else}}  
+			  		{{#if status}}
+						<p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
+			  		{{else}}
+						<p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
+			  		{{/if}}  
+			  		{{#if isInRole "Admin"}}
+						<p><button class="btn btn-danger btn-block btn-close">Close!</button></p>
+			  		{{/if}}        
+		  		{{/if}}
+			{{/if}}
+	  {{/if}}
+	</ul>
   </div>
   <br>
 </template>

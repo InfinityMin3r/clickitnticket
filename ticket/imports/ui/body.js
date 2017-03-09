@@ -224,6 +224,26 @@ Template.ticketview.events({
     const body = 'Ticket reopened by ' + Meteor.user().emails[0].address;
     Meteor.call('tickets.resolve', numtofind, body, true);
   },
+  'click .btn-close': function(event) {
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($(target).parent().parent()
+      .parent()
+      .find('.ticketnum')
+      .text(), 10);
+    const body = 'Ticket closed by ' + Meteor.user().emails[0].address;
+    Meteor.call('tickets.close', numtofind, body, true);
+  },
+  'click .btn-notclose': function(event) {
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($(target).parent().parent()
+      .parent()
+      .find('.ticketnum')
+      .text(), 10);
+    const body = 'Ticket opened by ' + Meteor.user().emails[0].address;
+    Meteor.call('tickets.close', numtofind, body, false);
+  },
   'click #adminbutton': function (event) { // Event for login button.  Call ticket list route
     event.preventDefault();
     Router.go('/admin');
@@ -276,6 +296,7 @@ Template.submit.events({
     const description = target.description.value;
     const youremail = Meteor.user().emails[0].address;
     const status = true;
+    const close = false; //only for admin use
     const comments = [];
     let number = Tickets.findOne({}, { sort: { createdAt: -1 } });
     if (typeof (number) === 'undefined') { // Set ticketnumber
@@ -299,6 +320,7 @@ Template.submit.events({
       youremail,
       number,
       status,
+      close,
       comments);
     // Route user to ticket list
     Router.go('/view');
