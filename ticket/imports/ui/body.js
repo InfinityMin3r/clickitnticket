@@ -268,6 +268,22 @@ Template.singleticket.events({
     const body = 'Ticket reopened by ' + Meteor.user().emails[0].address;
     Meteor.call('tickets.resolve', numtofind, body, true);
   },
+  'click .btn-close': function (event) { // Event for close ticket button.  Changes ticket status to resolve.
+    event.preventDefault();
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($('#ticketnum').text(), 10);
+    const body = 'Ticket closed by ' + Meteor.user().emails[0].address;
+    Meteor.call('tickets.close', numtofind, body, true);
+  },
+  'click .btn-notclose': function (event) { // Event for open ticket button.  Changes ticket status to resolve.
+    event.preventDefault();
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($('#ticketnum').text(), 10);
+    const body = 'Ticket opened by ' + Meteor.user().emails[0].address;
+    Meteor.call('tickets.close', numtofind, body, false);
+  },
   'submit form': function (event) { // Event for ticket commenting.  Logs current username and adds new comment.
     event.preventDefault();
     const target = event.target;
