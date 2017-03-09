@@ -54,12 +54,17 @@
           {{/if}}
           {{else}}  
             {{#if status}}
-            <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
+              <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
             {{else}}
-            <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
+              <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
             {{/if}}  
             {{#if isInRole "Admin"}}
-            <p><button class="btn btn-danger btn-block btn-close">Close!</button></p>
+              <p><button class="btn btn-danger btn-block btn-close">Close!</button></p>
+              {{#if blockComments}} 
+                  <p><button class="btn btn-danger btn-block btn-alcom">Allow commenting</button></p>
+                {{else}}
+                  <p><button class="btn btn-danger btn-block btn-nocom">Disable commenting</button></p>
+              {{/if}}
             {{/if}}        
           {{/if}}
       {{/if}}

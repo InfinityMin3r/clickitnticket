@@ -26,6 +26,7 @@ Meteor.methods({
 	number,
 	status,
 	close,
+	blockComments,
 	comments) {
 	// Make sure the user is logged in before inserting a task
 	if (!this.userId) {
@@ -44,6 +45,7 @@ Meteor.methods({
 	  number,
 	  status,
 	  close,
+	  blockComments,
 	  comments,
 	  createdAt: new Date()
 	});

@@ -313,6 +313,7 @@ Template.submit.events({
     const youremail = Meteor.user().emails[0].address;
     const status = true;
     const close = false; //only for admin use
+    const blockComments = false;
     const comments = [];
     let number = Tickets.findOne({}, { sort: { createdAt: -1 } });
     if (typeof (number) === 'undefined') { // Set ticketnumber
@@ -337,6 +338,7 @@ Template.submit.events({
       number,
       status,
       close,
+      blockComments,
       comments);
     // Route user to ticket list
     Router.go('/view');
