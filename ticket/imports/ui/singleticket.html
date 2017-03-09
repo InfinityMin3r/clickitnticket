@@ -32,13 +32,21 @@
           Resolved
         {{/if}}
       </p>
-      {{#unless isInRole 'Normal User'}}
-        {{#if status}}
-          <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
-        {{else}}
-          <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
+      {{#if isInRole 'Help Desk'}}
+        {{#if creator}}
+          {{#if status}}
+            <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
+          {{else}}
+            <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
+          {{/if}}
         {{/if}}
-      {{/unless}}
+      {{else}}
+          {{#if status}}
+            <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
+          {{else}}
+            <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
+          {{/if}}      
+      {{/if}}
     </li>
   </div>
 

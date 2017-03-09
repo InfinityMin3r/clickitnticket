@@ -43,7 +43,7 @@ Meteor.methods({
       number,
       status,
       comments,
-      createdAt: new Date(),
+      createdAt: new Date()
     });
   },
   'tickets.comment'(numtofind, body, author) {

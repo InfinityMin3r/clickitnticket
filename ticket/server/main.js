@@ -9,7 +9,7 @@ Meteor.startup(() => {
 	_.each(users, function(userData){
 		if (userData.emails[0].address === "chenj32@rpi.edu"){
 			Roles.addUsersToRoles(userData, ['Admin']);
-		}
+		} 
 	})
 
 	  Meteor.publish("directory", function () {

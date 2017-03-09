@@ -324,10 +324,8 @@ Template.users.helpers({
     return "Administrator";
   else if (Roles.userIsInRole(this, ['Technician']))
     return "Technician";
-  else if (Roles.userIsInRole(this,['Help Desk']))
+  else
     return "Help Desk Consultant";
-  else 
-    return "Normal User";
   },
 });
 
@@ -342,4 +340,31 @@ Template.users.events({
     }
   },
 
+});
+
+
+Template.ticket.helpers({
+  creatoremail:function() {
+    return Meteor.user().emails[0].address;
+  },
+  ticketemail:function() {
+    // thisTicket = Tickets.findOne({ number: number});
+    return this.youremail;
+  },
+
+  creator:function(){
+    // thisTicket = Tickets.findOne({ number: $("#targetTicket")});
+    if (Meteor.user().emails[0].address == this.youremail) {
+      return true;
+    } else return false;
+  },
+
+});
+
+Template.singleticket.helpers({
+  creator:function() {
+    if (Meteor.user().emails[0].address == this.youremail) {
+      return true;
+    } else return false;
+  },
 });
