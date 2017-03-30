@@ -3,8 +3,6 @@
 <template name="ticket">
 <br>
 <div class="container ticket-list">
-  <!-- <p> the email is <span> {{creatoremail}} </span> </p> -->
-  <!-- <p> ticket creator is  <span> {{ticketemail}} </span> </p> -->
   <label class="h1"><span class="ticketnum"><p id="targetTicket">{{number}}</p></span><span class="tbtn"><em>toggle</em></span></label>
  <ul>
 	  	<p><strong>Issue Type: </strong>{{issuetype}}</p>
@@ -17,7 +15,7 @@
 		  	Resolved
 		{{/if}}
 	  </p>
-	  <p><strong>Close: </strong>
+	  <p><strong>Closed: </strong>
 		{{#if close}}
 		  	Yes
 		{{else}}
@@ -31,7 +29,7 @@
             <div class="btn-group" role="group" aria-label="..." id="ticketact">
 			{{#if close}}
 				{{#if isInRole "Admin"}}
-					<p><button class="btn btn-success btn-notclose">Open</button></p>
+					<p><button class="btn btn-success btn-notcloseinview">Open</button></p>
 				{{/if}}
 		  	{{else}}
 		 		{{#if isInRole "Help Desk"}}

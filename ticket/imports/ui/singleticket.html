@@ -8,112 +8,90 @@
 
 
   <div class="btn-group" role="group" aria-label="..." id="navrole">
-      {{#if currentUser}}
-          <a href="/view" class="btn btn-info" style="margin-bottom: 10px" >Return to Ticket List</a>
-          <button class="btn btn-info" id="logout" style="margin-bottom: 10px" >Log Out</button>
-      {{/if}}
-      {{#if isInRole 'Admin'}}
-          <button class="btn btn-info" id = "adminbutton"> Admin </button>
-      {{/if}}
-  </div>
-  <br />
-  <!-- This section displays the info for the ticket -->
-  <div class="container ticket-list">
-    <label><h1><span id="ticketnum">{{number}}<br /></span><h3>{{summary}}</h3></h1></label>
-    <li>
-      <p><strong>Created at: </strong>{{createdAt}}</p>
-      <p><strong>Reported by: </strong>{{namein}}</p>
-      <p><strong>Contact Email: </strong>{{rpiemail}}</p>
-      {{#if altemail}}
-      <p><strong>Alternate Email: </strong>{{altemail}}</p>
-      {{/if}}
-      <p><strong>Contact Phone: </strong>{{phonein}}</p>
-      {{#if currentUser}}
-        <p><strong>Submitted By: </strong>{{youremail}}</p>
-      {{/if}}
-      <p><strong>Issue Type: </strong>{{issuetype}}</p>
-      {{#if currentUser}}
-        <p><strong>Priority: </strong>{{priority}}</p>
-      {{/if}}
-      <p><strong>Description: </strong>{{description}}</p>
-      <p><strong>Status: </strong>
-        {{#if status}}
-          New Ticket
+        {{#if currentUser}}
+            <!-- all user should have  -->
+            <a href="/view" class="btn btn-info" style="margin-bottom: 10px" >Return to Ticket List</a>
+            <button class="btn btn-info" id="logout" style="margin-bottom: 10px" >Log Out</button>
         {{else}}
-          Resolved
+            <!-- if guest -->
+            <a href="/" class="btn btn-info" style="margin-bottom: 10px" >Return Home</a>
         {{/if}}
-      </p>
-      <p><strong>Close: </strong>
-      {{#if close}}
-          Yes
-      {{else}}
-          Not
-      {{/if}}
-      </p>
-
-        <div class="btn-group" role="group" aria-label="...">
-            {{#if close}}
-                {{#if isInRole "Admin"}}
-                    <button class="btn btn-success btn-block btn-notclose">Open</button>
-                {{/if}}
-            {{else}}
-                {{#if isInRole "Help Desk"}}
-                    {{#if creator}}
-                        {{#if status}}
-                            <button class="btn btn-success btn-resolve">Resolve</button>
-                        {{else}}
-                            <button class="btn btn-success btn-reopen">Reopen</button>
-                        {{/if}}
-                    {{else}}
-                    {{/if}}
-                {{else}}
-                    {{#if status}}
-                        <button class="btn btn-success btn-resolve">Resolve</button>
-                    {{else}}
-                        <button class="btn btn-success btn-reopen">Reopen</button>
-                    {{/if}}
-                    {{#if isInRole "Admin"}}
-                        <button class="btn btn-danger btn-close">Close</button>
-                        {{#if blockComments}}
-                            <button class="btn btn-danger btn-alcom">Allow commenting</button>
-                        {{else}}
-                            <button class="btn btn-danger btn-nocom">Disable commenting</button>
-                        {{/if}}
-                    {{/if}}
-                {{/if}}
+        {{#if isInRole 'Admin'}}
+            <!-- if admin -->
+            <a href="/admin" class="btn btn-info" style="margin-bottom: 10px"> Admin </a>
+        {{/if}}
+    </div>
+    <br />
+    <!-- This section displays the info for the ticket -->
+    <div class="container ticket-list">
+        <label><h1><span id="ticketnum">{{number}}<br /></span><h3>{{summary}}</h3></h1></label>
+        <li>
+            <p><strong>Created at: </strong>{{createdAt}}</p>
+            <p><strong>Reported by: </strong>{{namein}}</p>
+            <p><strong>Contact Email: </strong>{{rpiemail}}</p>
+            {{#if altemail}}
+                <p><strong>Alternate Email: </strong>{{altemail}}</p>
             {{/if}}
-        </div>
-      <!-- {{#if close}}
-        {{#if isInRole "Admin"}}
-          <p><button class="btn btn-danger btn-block btn-notclose">Open</button></p>
-        {{/if}}
-        {{else}}
-        {{#if isInRole "Help Desk"}}
-          {{#if creator}}
-              {{#if status}}
-              <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
-              {{else}}
-              <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
-              {{/if}}
-          {{/if}}
-          {{else}}
+            <p><strong>Contact Phone: </strong>{{phonein}}</p>
+            {{#if currentUser}}
+                <p><strong>Submitted By: </strong>{{youremail}}</p>
+            {{/if}}
+            <p><strong>Issue Type: </strong>{{issuetype}}</p>
+            {{#if currentUser}}
+                <p><strong>Priority: </strong>{{priority}}</p>
+            {{/if}}
+            <p><strong>Description: </strong>{{description}}</p>
+            <p><strong>Status: </strong>
             {{#if status}}
-              <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
+                New Ticket
             {{else}}
-              <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
+                Resolved
             {{/if}}
-            {{#if isInRole "Admin"}}
-              <p><button class="btn btn-danger btn-block btn-close">Close!</button></p>
-              {{#if blockComments}}
-                  <p><button class="btn btn-danger btn-block btn-alcom">Allow commenting</button></p>
-                {{else}}
-                  <p><button class="btn btn-danger btn-block btn-nocom">Disable commenting</button></p>
-              {{/if}}
+            </p>
+            <p><strong>Closed: </strong>
+            {{#if close}}
+                Yes
+            {{else}}
+                No
             {{/if}}
-          {{/if}}
-      {{/if}} -->
-    </li>
-  </div>
+            </p>
+
+            <div class="btn-group" role="group" aria-label="...">
+                {{#if currentUser}}
+                    {{#if close}}
+                        {{#if isInRole "Admin"}}
+                            <button class="btn btn-success btn-block btn-notclose">Open</button>
+                        {{/if}}
+                    {{else}}
+                        {{#if isInRole "Help Desk"}}
+                            {{#if creator}}
+                                {{#if status}}
+                                    <button class="btn btn-success btn-resolve">Resolve</button>
+                                {{else}}
+                                    <button class="btn btn-success btn-reopen">Unresolve</button>
+                                {{/if}}
+                            {{else}}
+                            {{/if}}
+                        {{else}}
+                            {{#if status}}
+                                <button class="btn btn-success btn-resolve">Resolve</button>
+                            {{else}}
+                                <button class="btn btn-success btn-reopen">Unresolve</button>
+                            {{/if}}
+                            {{#if isInRole "Admin"}}
+                                <button class="btn btn-danger btn-close">Close</button>
+                                <!-- {{#if blockComments}}
+                                    <button class="btn btn-danger btn-alcom">Allow commenting</button>
+                                {{else}}
+                                    <button class="btn btn-danger btn-nocom">Disable commenting</button>
+                                {{/if}} -->
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            </div>
+        </li>
+    </div>
 
   <!-- This section displays each existing comment and the add comment field for authenticated viewers -->
   <div>
@@ -128,10 +106,15 @@
     {{/each}}
     {{#if currentUser}}
       <form class="container ticket-list">
-        {{#if status}}
-          <input type="text" id="commentbody" style="width: 100%;" placeholder="Add comment..." />
+
+        {{#if close}}
+            <p style="width: 100%; margin-bottom: 0px"><em>Ticket is closed, commenting disabled.</em></p>
         {{else}}
-          <p style="width: 100%; margin-bottom: 0px"><em>Ticket is resolved, commenting disabled.</em></p>
+            {{#if status}}
+              <input type="text" id="commentbody" style="width: 100%;" placeholder="Add comment..." />
+            {{else}}
+              <p style="width: 100%; margin-bottom: 0px"><em>Ticket is resolved, commenting disabled.</em></p>
+            {{/if}}
         {{/if}}
       </form>
       <br />

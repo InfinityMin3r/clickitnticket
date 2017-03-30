@@ -248,6 +248,17 @@ Template.ticketview.events({
       .parent()
       .find('.ticketnum')
       .text(), 10);
+    console.log(numtofind);
+    const body = 'Ticket opened by ' + Meteor.user().emails[0].address;
+    Meteor.call('tickets.close', numtofind, body, false);
+  },
+  'click .btn-notcloseinview': function(event) {
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($(target).parent().parent().parent().parent()
+      .find('.ticketnum')
+      .text(), 10);
+    console.log( numtofind.toString());
     const body = 'Ticket opened by ' + Meteor.user().emails[0].address;
     Meteor.call('tickets.close', numtofind, body, false);
   },
