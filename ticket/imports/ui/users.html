@@ -1,33 +1,27 @@
 <template name="users">
-  {{#if isInRole 'Admin'}}
-    <h4>Users</h4>
+    <!-- check the user is admin again -->
+    {{#if isInRole 'Admin'}}
 
-    <table>
+
+    <a href="/view"><span class="btn btn-info" id="navrole">Return to Ticket List</span></a>
+
+
+
+    <h4 id="userheading">Users</h4>
+
+    <table class="table" id="usertable">
         <tr>
           <th>ID</th>
           <th>email</th>
           <th>roles</th>
           <th>action</th>
-          <!-- <th></th> -->
         </tr>
       {{#each allusers}}
         <tr>
           <td class="userId">{{_id}}</td>
           <td>{{email}}</td>
           <td>{{role}}</td>
-<!--           <td>
-            <select>
-              <option value="admin">Admin</option>
-              <option value="technican">Technican</option>
-              <option value="helpdesk">Helpdesk</option>
-              <option value="normaluser">Normal User</option>chenj32@rpi.edu
-            </select>
-          </td> -->
-          <!-- <td><button type="submit" class="change">Change</button></td> -->
-<!--           <td class="btn btn-info"><p class="setAdmin">Set Admin</p></td>
-          <td class="btn btn-info"><p class="setTech">Set Technician</p></td>
-          <td class="btn btn-info"><p class="setDesk">Set Help Desk</p></td>
-          <td class="btn btn-info"><p class="setNormal">Set Normal User</p></td> -->
+
           <td class="dropdown">
             <select id = "setRoles" >
               <option value=""></option>
@@ -40,9 +34,8 @@
         </tr>
       {{/each}}
     </table>
-    <!-- <button type="submit" id="changeRoles">Submit</button> -->
 
-
-
-  {{/if}}
+    {{else}}
+        <p>No permission</p>
+    {{/if}}
 </template>

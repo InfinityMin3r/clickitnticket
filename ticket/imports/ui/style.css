@@ -1,0 +1,32 @@
+#navrole, #userlist {
+    margin: 10px;
+}
+
+#ticketact {
+    margin-top: 10px;
+}
+
+.tbtn {
+    color: #336699;
+    text-decoration: underline;
+}
+
+
+#usertable {
+    margin: 1em;
+}
+
+
+td, th {
+    padding-bottom: 0.5em;
+}
+
+
+#userheading {
+    text-align: center;
+}
+
+
+#viewbtn{
+    width: auto;
+}

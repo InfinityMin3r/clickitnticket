@@ -1,12 +1,11 @@
 <template name="admin">
 
-  {{#if isInRole 'Admin'}}
-    <p> Hi </p>
-    <label><a href="/admin/users">Users</a></label>
-  {{else}}
-    <p> Go away </p>
-    <label><a href="../view">View Ticket</a></label>
-  {{/if}}
+    {{#if isInRole 'Admin'}}
+        <!-- <p id="userlist"><a href="/admin/users">User List</a></p> -->
+        <button class="btn btn-info" id="userlist">User List</button>
+    {{else}}
+        <p>no permission</p>
+    {{/if}}
 
 
 

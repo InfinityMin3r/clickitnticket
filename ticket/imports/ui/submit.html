@@ -1,10 +1,15 @@
 <!-- This page allows an authenticated viewer to create a ticket. -->
 
 <template name="submit">
-  {{#if currentUser}}
-    <a href="/view" class="btn btn-info" style="margin-bottom: 10px" >Return to Ticket List</a>
-    <button class="btn btn-info" id="logout" style="margin-bottom: 10px" >Log Out</button>
-  {{/if}}
+    <div class="btn-group" role="group" aria-label="..." id="navrole">
+        {{#if currentUser}}
+            <a href="/view" class="btn btn-info" style="margin-bottom: 10px" >Return to Ticket List</a>
+            <button class="btn btn-info" id="logout" style="margin-bottom: 10px" >Log Out</button>
+        {{/if}}
+        {{#if isInRole 'Admin'}}
+            <button class="btn btn-info" id = "adminbutton"> Admin </button>
+        {{/if}}
+    </div>
   <div class="container ticket-box">
     <form>
 

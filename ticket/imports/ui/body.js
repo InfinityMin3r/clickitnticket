@@ -1,6 +1,7 @@
 // Import external meteor packages
 import { Template } from 'meteor/templating';
 import { Tickets } from '../api/tickets.js';
+import { AccountsCommon } from 'meteor/accounts-base'
 
 // Import HTML pages
 import './admin.html';
@@ -12,6 +13,8 @@ import './ticketview.html';
 import './login.html';
 import './404.html';
 import './users.html';
+
+import './style.css';
 
 // Non-blocking alert for bad user-input
 function badform() {
@@ -149,6 +152,13 @@ Template.ticketview.events({
   },
 });
 
+
+Template.admin.events({
+    'click #userlist':function(){
+        Router.go('/admin/users');
+    }
+})
+
 // Events for homoepage.
 Template.homepage.events({
   'click #submitbutton': function (event) { // Event for submit button.  Checks of number is valid, then loads single ticket view
@@ -198,10 +208,7 @@ Template.ticketview.events({
   },
   'click .btn-open': function (event) { // Event for open ticket button.  Loads current ticket on single page.
     const target = event.target;
-    const numtofind = $(target).parent().parent()
-    .parent()
-    .find('.ticketnum')
-    .text();
+    const numtofind = $(target).parent().parent().find('.ticketnum').text();
     Router.go('/view/' + numtofind);
   },
   'click .btn-resolve': function (event) { // Event for resolve ticket button.  Changes ticket status to resolve.
@@ -348,13 +355,13 @@ Template.submit.events({
 //make user collection available to administrator
 Meteor.subscribe("directory");
 
-//make the ticket list available to users 
+//make the ticket list available to users
 Meteor.subscribe("ticketslist");
 
 //help users to get email and users for user template
 Template.users.helpers({
   email: function(){
-  return this.emails[0].address; 
+  return this.emails[0].address;
  },
  allusers:function(){
   return Meteor.users.find({});
@@ -393,7 +400,6 @@ Template.ticket.helpers({
   },
 
   creator:function(){
-    // thisTicket = Tickets.findOne({ number: $("#targetTicket")});
     if (Meteor.user().emails[0].address == this.youremail) {
       return true;
     } else return false;

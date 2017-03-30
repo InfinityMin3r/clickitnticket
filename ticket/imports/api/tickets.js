@@ -52,7 +52,7 @@ Meteor.methods({
   },
   'tickets.comment'(numtofind, body, author) {
 	// console.log("number is ",numtofind);
-	
+
 	const ticket = Tickets.findOne({ number: numtofind }); // get the actual ticket
 	console.log("tickets is ", ticket);
 	const arro = ticket.comments; //get the existing comments
@@ -102,12 +102,12 @@ Meteor.methods({
 	  Tickets.update({ _id: ticket._id }, { $set: { close: true } }); //set status to close
 	} else { //if resolving
 	  Tickets.update({ _id: ticket._id }, { $set: { close: false } }); //set status to close
-	}  	
+	}
   },
   edit(id,roles){
- 
-	//methods that helps allow the administrator to assign roles to the users. 
-	//maybe need a new file to handle all the functions 
+
+	//methods that helps allow the administrator to assign roles to the users.
+	//maybe need a new file to handle all the functions
 
 	roleArr = Roles.getRolesForUser(id);
 
@@ -121,6 +121,6 @@ Meteor.methods({
 	  Roles.addUsersToRoles(id,roles);
 	} else {
 	  Roles.removeUsersFromRoles(id,roles);
-	}  
-  }, 
+	}
+  },
 });

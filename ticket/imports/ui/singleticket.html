@@ -1,10 +1,21 @@
 <!-- This page displays a single ticket and comments.  Certain fields are restricted to authenticated viewers, as is the resolve button and comment add field. -->
 
 <template name="singleticket">
-  {{#if currentUser}}
+  <!-- {{#if currentUser}}
     <a href="/view" class="btn btn-info" style="margin-bottom: 10px" >Return to Ticket List</a>
     <button class="btn btn-info" id="logout" style="margin-bottom: 10px" >Log Out</button>
-  {{/if}}
+  {{/if}} -->
+
+
+  <div class="btn-group" role="group" aria-label="..." id="navrole">
+      {{#if currentUser}}
+          <a href="/view" class="btn btn-info" style="margin-bottom: 10px" >Return to Ticket List</a>
+          <button class="btn btn-info" id="logout" style="margin-bottom: 10px" >Log Out</button>
+      {{/if}}
+      {{#if isInRole 'Admin'}}
+          <button class="btn btn-info" id = "adminbutton"> Admin </button>
+      {{/if}}
+  </div>
   <br />
   <!-- This section displays the info for the ticket -->
   <div class="container ticket-list">
@@ -25,7 +36,7 @@
         <p><strong>Priority: </strong>{{priority}}</p>
       {{/if}}
       <p><strong>Description: </strong>{{description}}</p>
-      <p><strong>Status: </strong> 
+      <p><strong>Status: </strong>
         {{#if status}}
           New Ticket
         {{else}}
@@ -39,7 +50,40 @@
           Not
       {{/if}}
       </p>
-      {{#if close}}
+
+        <div class="btn-group" role="group" aria-label="...">
+            {{#if close}}
+                {{#if isInRole "Admin"}}
+                    <button class="btn btn-success btn-block btn-notclose">Open</button>
+                {{/if}}
+            {{else}}
+                {{#if isInRole "Help Desk"}}
+                    {{#if creator}}
+                        {{#if status}}
+                            <button class="btn btn-success btn-resolve">Resolve</button>
+                        {{else}}
+                            <button class="btn btn-success btn-reopen">Reopen</button>
+                        {{/if}}
+                    {{else}}
+                    {{/if}}
+                {{else}}
+                    {{#if status}}
+                        <button class="btn btn-success btn-resolve">Resolve</button>
+                    {{else}}
+                        <button class="btn btn-success btn-reopen">Reopen</button>
+                    {{/if}}
+                    {{#if isInRole "Admin"}}
+                        <button class="btn btn-danger btn-close">Close</button>
+                        {{#if blockComments}}
+                            <button class="btn btn-danger btn-alcom">Allow commenting</button>
+                        {{else}}
+                            <button class="btn btn-danger btn-nocom">Disable commenting</button>
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
+      <!-- {{#if close}}
         {{#if isInRole "Admin"}}
           <p><button class="btn btn-danger btn-block btn-notclose">Open</button></p>
         {{/if}}
@@ -52,22 +96,22 @@
               <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
               {{/if}}
           {{/if}}
-          {{else}}  
+          {{else}}
             {{#if status}}
               <p><button class="btn btn-danger btn-block btn-resolve">Resolve!</button></p>
             {{else}}
               <p><button class="btn btn-success btn-block btn-reopen">Reopen!</button></p>
-            {{/if}}  
+            {{/if}}
             {{#if isInRole "Admin"}}
               <p><button class="btn btn-danger btn-block btn-close">Close!</button></p>
-              {{#if blockComments}} 
+              {{#if blockComments}}
                   <p><button class="btn btn-danger btn-block btn-alcom">Allow commenting</button></p>
                 {{else}}
                   <p><button class="btn btn-danger btn-block btn-nocom">Disable commenting</button></p>
               {{/if}}
-            {{/if}}        
+            {{/if}}
           {{/if}}
-      {{/if}}
+      {{/if}} -->
     </li>
   </div>
 
