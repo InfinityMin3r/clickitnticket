@@ -47,24 +47,53 @@ Meteor.methods({
 	  close,
 	  blockComments,
 	  comments,
+      hide: false,
 	  createdAt: new Date()
 	});
   },
-  'tickets.comment'(numtofind, body, author) {
+  'tickets.comment'(numtofind, body, allow) {
 	// console.log("number is ",numtofind);
 
 	const ticket = Tickets.findOne({ number: numtofind }); // get the actual ticket
 	console.log("tickets is ", ticket);
 	const arro = ticket.comments; //get the existing comments
 	const time = new Date(); //current time
+    const author = 'System'; //these comments are authored by System
 	let arrnew = [{}];
 	if (typeof (arro) === 'undefined') { //if no existing comments
-	  arrnew = [{ author, body, time }]; //compose new comment
+	  arrnew = [{ allow, body, time }]; //compose new comment
 	} else { //there are existing comments
 	  arrnew = arro; //copy old array
 	  arrnew.push({ author, body, time }); //push new comment to array
 	}
 	Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } }); //update comments array to new comments array
+    if (allow) { //if reopening
+	  Tickets.update({ _id: ticket._id }, { $set: { blockComments: false } }); //set status to close
+	} else { //if resolving
+	  Tickets.update({ _id: ticket._id }, { $set: { blockComments: true } }); //set status to close
+	}
+  },
+  'tickets.hide'(numtofind, body, hide) {
+	// console.log("number is ",numtofind);
+
+	const ticket = Tickets.findOne({ number: numtofind }); // get the actual ticket
+	console.log("tickets is ", ticket);
+	const arro = ticket.comments; //get the existing comments
+	const time = new Date(); //current time
+    const author = 'System'; //these comments are authored by System
+	let arrnew = [{}];
+	if (typeof (arro) === 'undefined') { //if no existing comments
+	  arrnew = [{ allow, body, time }]; //compose new comment
+	} else { //there are existing comments
+	  arrnew = arro; //copy old array
+	  arrnew.push({ author, body, time }); //push new comment to array
+	}
+	Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } }); //update comments array to new comments array
+    if (hide) { //if reopening
+	  Tickets.update({ _id: ticket._id }, { $set: { hide: true } }); //set status to close
+	} else { //if resolving
+	  Tickets.update({ _id: ticket._id }, { $set: { hide: false } }); //set status to close
+	}
   },
   'tickets.resolve'(numtofind, body, open) { //function to resolve or reopen a ticket
 	const ticket = Tickets.findOne({ number: numtofind }); //find ticket

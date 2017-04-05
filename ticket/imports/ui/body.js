@@ -302,6 +302,38 @@ Template.singleticket.events({
     const body = 'Ticket opened by ' + Meteor.user().emails[0].address;
     Meteor.call('tickets.close', numtofind, body, false);
   },
+  'click .btn-alcom': function(event) {
+    event.preventDefault();
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($('#ticketnum').text(), 10);
+    const body = 'Comments field is allowed by ' + Meteor.user().emails[0].address;
+    Meteor.call('tickets.comment',numtofind,body,true);
+  },
+  'click .btn-nocom': function(event) {
+    event.preventDefault();
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($('#ticketnum').text(), 10);
+    const body = 'Comments field is allowed by ' + Meteor.user().emails[0].address;
+    Meteor.call('tickets.comment',numtofind,body,false);
+  },
+  'click .btn-hide': function(event) {
+    event.preventDefault();
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($('#ticketnum').text(), 10);
+    const body = 'The ticket view is hided by ' + Meteor.user().emails[0].address;
+    Meteor.call('tickets.hide',numtofind,body,true);
+  },
+  'click .btn-show': function(event) {
+    event.preventDefault();
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($('#ticketnum').text(), 10);
+    const body = 'The ticket view are made visible to users by ' + Meteor.user().emails[0].address;
+    Meteor.call('tickets.hide',numtofind,body,false);
+  },
   'submit form': function (event) { // Event for ticket commenting.  Logs current username and adds new comment.
     event.preventDefault();
     const target = event.target;
