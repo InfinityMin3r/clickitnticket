@@ -133,6 +133,20 @@ Meteor.methods({
 	  Tickets.update({ _id: ticket._id }, { $set: { close: false } }); //set status to close
 	}
   },
+  'tickets.transfer'(numtofind, body, newowner) {
+    const ticket = Tickets.findOne({ number: numtofind }); //find ticket
+  	const arro = ticket.comments; //get existing comments
+  	const author = 'System'; //these comments are authored by System
+  	const time = new Date(); //current time
+  	let arrnew = [{}];
+  	if (typeof (arro) === 'undefined') { //if no existing comments
+  	  arrnew = [{ author, body, time }]; //compose new comment
+  	} else { //else comments already exist
+  	  arrnew = arro; //copy comments
+  	  arrnew.push({ author, body, time }); //add new comment to array
+  	}
+  	Tickets.update({ _id: ticket._id }, { $set: { youremail: newowner } }); //update comments array with new one
+  },
   edit(id,roles){
 
 	//methods that helps allow the administrator to assign roles to the users.

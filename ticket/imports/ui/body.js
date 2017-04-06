@@ -334,6 +334,18 @@ Template.singleticket.events({
     const body = 'The ticket view are made visible to users by ' + Meteor.user().emails[0].address;
     Meteor.call('tickets.hide',numtofind,body,false);
   },
+  'click .btn-trans': function(event) {
+    event.preventDefault();
+    const target = event.target;
+    $(target).toggle();
+    const numtofind = parseInt($('#ticketnum').text(), 10);
+    var futureowner = prompt("Transfer ownership to ", "");
+    if (futureowner != "") {
+        const body = 'The ownership is transfered to ' + futureowner + " from " + Meteor.user().emails[0].address;
+        console.log(body);
+        Meteor.call('tickets.transfer',numtofind,body,futureowner);
+    }
+},
   'submit form': function (event) { // Event for ticket commenting.  Logs current username and adds new comment.
     event.preventDefault();
     const target = event.target;
