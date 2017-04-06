@@ -145,6 +145,7 @@ Meteor.methods({
   	  arrnew = arro; //copy comments
   	  arrnew.push({ author, body, time }); //add new comment to array
   	}
+    Tickets.update({ _id: ticket._id }, { $set: { comments: arrnew } }); //update comments array with new one
   	Tickets.update({ _id: ticket._id }, { $set: { youremail: newowner } }); //update comments array with new one
   },
   edit(id,roles){
