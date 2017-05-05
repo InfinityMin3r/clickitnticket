@@ -180,6 +180,15 @@ Template.homepage.events({
   },
 });
 
+Template.singleticket.helpers({
+  email: function(){
+    return this.emails[0].address;
+  },
+  allusers:function(){
+    return Meteor.users.find({});
+  },
+});
+
 // Check if user directly inputs ticket number into URL, return to homepage if invalid number
 Template.singleticket.rendered = function () {
   $(document).ready(function () {
@@ -334,18 +343,39 @@ Template.singleticket.events({
     const body = 'The ticket view are made visible to users by ' + Meteor.user().emails[0].address;
     Meteor.call('tickets.hide',numtofind,body,false);
   },
-  'click .btn-trans': function(event) {
+  'change #SetOwner': function(event) {
     event.preventDefault();
     const target = event.target;
     // $(target).toggle();
     const numtofind = parseInt($('#ticketnum').text(), 10);
-    var futureowner = prompt("Transfer ownership to ", "");
-      if (futureowner != "") {
-          const body = 'The ownership is transfered to ' + futureowner + " by " + Meteor.user().emails[0].address;
-          console.log(body);
-          Meteor.call('tickets.transfer',numtofind,body,futureowner);
+
+    var r = confirm("Are you sure?");
+    if (r == true){
+      if (event.target.value != "") {    
+        const body = 'The ownership is transfered to ' + event.target.value + " by " + Meteor.user().emails[0].address;
+        console.log(body);
+        Meteor.call('tickets.transfer', numtofind, body, event.target.value);
       }
+    }
+
   },
+
+  
+
+  //     }
+  // 'click .btn-trans': function(event) {
+  //   event.preventDefault();
+  //   const target = event.target;
+  //   // $(target).toggle();
+  //   const numtofind = parseInt($('#ticketnum').text(), 10);
+  //   var futureowner = prompt("Transfer ownership to ", "");
+  //     if (futureowner != "") {
+  //         const body = 'The ownership is transfered to ' + futureowner + " by " + Meteor.user().emails[0].address;
+  //         console.log(body);
+  //         Meteor.call('tickets.transfer',numtofind,body,futureowner);
+  //     }
+  // },
+
   // 'click .btn-trans': function(event) {
   //   event.preventDefault();
   //   const target = event.target;
@@ -461,6 +491,7 @@ Template.ticket.helpers({
   creatoremail:function() {
     return Meteor.user().emails[0].address;
   },
+
   ticketemail:function() {
     // thisTicket = Tickets.findOne({ number: number});
     return this.youremail;
@@ -481,3 +512,6 @@ Template.singleticket.helpers({
     } else return false;
   },
 });
+
+
+

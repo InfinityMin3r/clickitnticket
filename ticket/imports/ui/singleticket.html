@@ -2,6 +2,9 @@
 
 <template name="singleticket">
 
+<!-- <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css"> -->
+
   <div class="btn-group" role="group" aria-label="..." id="navrole">
         {{#if currentUser}}
             <!-- all user should have  -->
@@ -154,7 +157,15 @@
                                     {{else}}
                                         <button class="btn btn-danger btn-hide">Hide</button>
                                     {{/if}}
-                                    <button class="btn btn-danger btn-trans" id = "bntrown">Transfer</button>
+                                    <!-- <button class="btn btn-danger btn-trans" id = "bntrown">Transfer</button> -->
+                                    <td class="dropdown">
+                                        <select id = "SetOwner" >
+                                          <option value="">Select transfer to:</option>
+                                          {{#each allusers}}
+                                          <option value = {{email}}>{{email}}</option>
+                                          {{/each}}
+                                        </select>
+                                    </td>
                                 {{/if}}
                             {{/if}}
                         {{/if}}
